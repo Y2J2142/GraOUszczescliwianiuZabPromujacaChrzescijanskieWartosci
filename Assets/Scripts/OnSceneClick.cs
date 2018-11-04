@@ -10,11 +10,11 @@ public class OnSceneClick : MonoBehaviour {
 	private GameObject spawnedFlower;
 	private GameObject currentFrog;
 	private Vector3 frogPosition;
-    public Sprite sadSprite;
+    public Sprite happySprite;
 
 	void Start () {
-		this.prefab = GameObject.Find("Flower");
-		this.sadSprite = Resources.Load<Sprite>("Sprites/sad_frog.png");
+		this.prefab = Resources.Load<GameObject>("Flower");
+		this.happySprite = Resources.Load<Sprite>("happy_frog");
 	}
 
     void OnGUI()
@@ -34,12 +34,12 @@ public class OnSceneClick : MonoBehaviour {
 		if(this.spawnedFlower != null)
 		{
 			this.spawnedFlower.transform.Rotate(new Vector3(0, 0, 2));
-			this.spawnedFlower.transform.position = Vector3.MoveTowards(this.spawnedFlower.transform.position, this.frogPosition, 20);
+			this.spawnedFlower.transform.position = Vector3.MoveTowards(this.spawnedFlower.transform.position, this.frogPosition, 15);
 
 			if(this.spawnedFlower.transform.position == new Vector3(0, 0, -10)) 
 			{
 				Destroy(this.spawnedFlower);
-				this.currentFrog.GetComponent<Image>().sprite = sadSprite;
+				this.currentFrog.GetComponent<Image>().sprite = happySprite;
 			}
 
 			Debug.Log(this.spawnedFlower.transform.position);
