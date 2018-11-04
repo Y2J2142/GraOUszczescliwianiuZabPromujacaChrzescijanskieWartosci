@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 
 public class Frog : MonoBehaviour
 {
@@ -15,12 +15,12 @@ public class Frog : MonoBehaviour
     [SerializeField]
     public int currentSadnessLevel = 10;
 
-    private SpriteRenderer spriteRenderer;
+    private Image image;
 
     void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sadSprite;
+        image = gameObject.GetComponent<Image>();
+        image.sprite = sadSprite;
     }
 
     void Update()
@@ -49,6 +49,6 @@ public class Frog : MonoBehaviour
 
     private void MakeHappy()
     {
-        spriteRenderer.sprite = happySprite;
+        image.sprite = happySprite;
     }
 }
