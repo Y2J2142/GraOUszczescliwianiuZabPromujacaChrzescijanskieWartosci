@@ -6,15 +6,14 @@ using UnityEngine.UI;
 
 public class OnSceneClick : MonoBehaviour {
 
-	private GameObject prefab;
+	private GameObject flowerPrefab;
 	private List<GameObject> spawnedFlowers;
 	private Frog frog;
-	private Vector3 frogPosition;
 
 	void Start () {
-		this.prefab = Resources.Load<GameObject>("Flower");
+		this.frog = GameObject.Find("Frog").GetComponent<Frog>();
+		this.flowerPrefab = Resources.Load<GameObject>("Flower");
 		this.spawnedFlowers = new List<GameObject>();
-		initCurrentFrog();
 	}
 
     void OnGUI()
@@ -28,26 +27,27 @@ public class OnSceneClick : MonoBehaviour {
 	void Update () {
 		this.spawnedFlowers.ForEach(flower => {
 			flower.transform.Rotate(new Vector3(0, 0, 2));
-			flower.transform.position = Vector3.MoveTowards(flower.transform.position, this.frogPosition, 15);
+			flower.transform.position = Vector3.MoveTowards(flower.transform.position, this.frog.transform.position, 15);
 
-			if(flower.transform.position == new Vector3(0, 0, -10)) 
+			if(flower.transform.position == frog.transform.position) 
 			{
 				this.spawnedFlowers.Remove(flower);
 				Destroy(flower);
 				this.frog.TakeFlowers(10);
 			}
 		});
-	}
 
-	void initCurrentFrog()
-	{
-		this.frog = GameObject.Find("Frog").GetComponent<Frog>();
-		this.frogPosition = Camera.main.ScreenToWorldPoint(this.frog.gameObject.transform.position);
+		if(!frog.IsSad())
+		{
+			this.frog.FlyAway();
+		}
 	}
 
 	void spawnFlower()
 	{
-		Vector3 mousePositionIn3D = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		this.spawnedFlowers.Add(Instantiate(this.prefab, new Vector3(mousePositionIn3D.x, mousePositionIn3D.y, 0), Quaternion.identity));
+		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+		GameObject spawnedFlower = Instantiate(this.flowerPrefab, mousePosition, Quaternion.identity);
+		spawnedFlower.transform.SetParent(GameObject.Find("Canvas").transform);
+		this.spawnedFlowers.Add(spawnedFlower);
 	}
 }
