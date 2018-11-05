@@ -7,14 +7,15 @@ using UnityEngine.UI;
 public class OnSceneClick : MonoBehaviour {
 
 	private GameObject prefab;
-	private GameObject spawnedFlower;
-	private GameObject currentFrog;
+	private List<GameObject> spawnedFlowers;
+	private Frog frog;
 	private Vector3 frogPosition;
     public Sprite happySprite;
 
 	void Start () {
 		this.prefab = Resources.Load<GameObject>("Flower");
 		this.happySprite = Resources.Load<Sprite>("happy_frog");
+		this.spawnedFlowers = new List<GameObject>();
 	}
 
     void OnGUI()
@@ -22,40 +23,33 @@ public class OnSceneClick : MonoBehaviour {
 		if(Input.GetButtonDown("Fire1"))
 		{
 			initCurrentFrog();
-			if(this.spawnedFlower == null)
-			{
-				spawnFlower();
-			}
-			
+			spawnFlower();	
 		}
     }
 
 	void Update () {
-		if(this.spawnedFlower != null)
-		{
-			this.spawnedFlower.transform.Rotate(new Vector3(0, 0, 2));
-			this.spawnedFlower.transform.position = Vector3.MoveTowards(this.spawnedFlower.transform.position, this.frogPosition, 15);
+		this.spawnedFlowers.ForEach(flower => {
+			flower.transform.Rotate(new Vector3(0, 0, 2));
+			flower.transform.position = Vector3.MoveTowards(flower.transform.position, this.frogPosition, 15);
 
-			if(this.spawnedFlower.transform.position == new Vector3(0, 0, -10)) 
+			if(flower.transform.position == new Vector3(0, 0, -10)) 
 			{
-				Destroy(this.spawnedFlower);
-				this.currentFrog.GetComponent<Image>().sprite = happySprite;
+				this.spawnedFlowers.Remove(flower);
+				Destroy(flower);
+				this.frog.TakeFlowers(10);
 			}
-
-			Debug.Log(this.spawnedFlower.transform.position);
-			Debug.Log(this.currentFrog.transform.position);
-		}
+		});
 	}
 
 	void initCurrentFrog()
 	{
-		this.currentFrog = GameObject.Find("Frog");
-		this.frogPosition = Camera.main.ScreenToWorldPoint(this.currentFrog.transform.position);
+		this.frog = GameObject.Find("Frog").GetComponent<Frog>();
+		this.frogPosition = Camera.main.ScreenToWorldPoint(this.frog.gameObject.transform.position);
 	}
 
 	void spawnFlower()
 	{
 		Vector3 mousePositionIn3D = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-		this.spawnedFlower = Instantiate(this.prefab, new Vector3(mousePositionIn3D.x, mousePositionIn3D.y, 0), Quaternion.identity);
+		this.spawnedFlowers.Add(Instantiate(this.prefab, new Vector3(mousePositionIn3D.x, mousePositionIn3D.y, 0), Quaternion.identity));
 	}
 }

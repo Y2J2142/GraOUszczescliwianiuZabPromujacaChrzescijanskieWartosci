@@ -210,6 +210,16 @@ Prefab:
       propertyPath: m_Pivot.y
       value: 0.5
       objectReference: {fileID: 0}
+    - target: {fileID: 224512770664436952, guid: a80e328cfa37af84e80a97c23f5aa7f9,
+        type: 2}
+      propertyPath: m_LocalScale.x
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 224512770664436952, guid: a80e328cfa37af84e80a97c23f5aa7f9,
+        type: 2}
+      propertyPath: m_LocalScale.y
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a80e328cfa37af84e80a97c23f5aa7f9, type: 2}
   m_IsPrefabAsset: 0
@@ -287,7 +297,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53211e2c1d23e364fa80db9d424f4213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sadSprite: {fileID: 0}
+  happySprite: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
