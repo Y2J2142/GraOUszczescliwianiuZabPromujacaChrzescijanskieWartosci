@@ -213,12 +213,17 @@ Prefab:
     - target: {fileID: 224512770664436952, guid: a80e328cfa37af84e80a97c23f5aa7f9,
         type: 2}
       propertyPath: m_LocalScale.x
-      value: 2
+      value: 1.5
       objectReference: {fileID: 0}
     - target: {fileID: 224512770664436952, guid: a80e328cfa37af84e80a97c23f5aa7f9,
         type: 2}
       propertyPath: m_LocalScale.y
-      value: 2
+      value: 1.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 224512770664436952, guid: a80e328cfa37af84e80a97c23f5aa7f9,
+        type: 2}
+      propertyPath: m_LocalScale.z
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a80e328cfa37af84e80a97c23f5aa7f9, type: 2}
@@ -297,7 +302,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 53211e2c1d23e364fa80db9d424f4213, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  happySprite: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -346,7 +350,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 635.68536
+  orthographic size: 608.7651
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2

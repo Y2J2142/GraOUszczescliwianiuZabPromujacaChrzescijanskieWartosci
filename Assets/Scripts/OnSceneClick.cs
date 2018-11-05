@@ -10,19 +10,17 @@ public class OnSceneClick : MonoBehaviour {
 	private List<GameObject> spawnedFlowers;
 	private Frog frog;
 	private Vector3 frogPosition;
-    public Sprite happySprite;
 
 	void Start () {
 		this.prefab = Resources.Load<GameObject>("Flower");
-		this.happySprite = Resources.Load<Sprite>("happy_frog");
 		this.spawnedFlowers = new List<GameObject>();
+		initCurrentFrog();
 	}
 
     void OnGUI()
     {
 		if(Input.GetButtonDown("Fire1"))
 		{
-			initCurrentFrog();
 			spawnFlower();	
 		}
     }
