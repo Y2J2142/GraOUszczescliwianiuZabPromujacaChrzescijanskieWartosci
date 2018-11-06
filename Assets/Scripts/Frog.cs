@@ -62,11 +62,18 @@ public class Frog : MonoBehaviour
 
     private void FlyAway()
     {
-        Vector2 frogSize = rectTransform.sizeDelta;
-        rectTransform.sizeDelta = new Vector2(frogSize.x - 4, frogSize.y - 4);
-        gameObject.transform.Translate(xSpeed, ySpeed, 0);
-        xSpeed = xSpeed < 0 ? xSpeed - 0.1f : xSpeed + 0.1f;
-        ySpeed = ySpeed < 0 ? ySpeed - 0.65f : ySpeed + 0.65f;
+        gameObject.transform.localScale += new Vector3(-0.75f, -0.75f, 0);
+        gameObject.transform.position = new Vector3(xSpeed, ySpeed, 0);
+        xSpeed = xSpeed < 0 ? xSpeed - 5f : xSpeed + 5f;
+        ySpeed = ySpeed < 0 ? ySpeed - 15 : ySpeed + 15f;
+        if(xSpeed < 0)
+        {
+            gameObject.transform.Rotate(new Vector3(0, 0, 2.5f));
+        }
+        else 
+        {
+            gameObject.transform.Rotate(new Vector3(0, 0, -2.5f));
+        }
     }
 
     private void initFlyDestination()
