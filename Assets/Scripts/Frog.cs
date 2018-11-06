@@ -14,29 +14,25 @@ public class Frog : MonoBehaviour
 
     [SerializeField]
     public int currentSadnessLevel = 10;
-    private Image image;
+    private SpriteRenderer spriteRenderer;
+    private RectTransform rectTransform;
     private float xSpeed;
     private float ySpeed;
-    
 
     void Start()
     {
-        image = gameObject.GetComponent<Image>();
-        image.sprite = sadSprite;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sadSprite;
+        rectTransform = gameObject.GetComponent<RectTransform>();
         initFlyDestination();
     }
 
     void Update()
     {
-    }
-
-    public void FlyAway()
-    {
-        Vector2 frogSize = gameObject.GetComponent<Image>().rectTransform.sizeDelta;
-        image.rectTransform.sizeDelta = new Vector2(frogSize.x - 4, frogSize.y - 4);
-        gameObject.transform.Translate(xSpeed, ySpeed, 0);
-        xSpeed = xSpeed < 0 ? xSpeed - 0.1f : xSpeed + 0.1f;
-        ySpeed = ySpeed < 0 ? ySpeed - 0.65f : ySpeed + 0.65f;
+        if (!IsSad())
+        {
+            FlyAway();
+        }
     }
 
     public void TakeFlowers(int flowers)
@@ -48,7 +44,7 @@ public class Frog : MonoBehaviour
     {
         Debug.Log("Frog received " + happiness + " happiness.");
         currentSadnessLevel -= happiness;
-        if(!IsSad())
+        if (!IsSad())
         {
             MakeHappy();
         }
@@ -61,14 +57,23 @@ public class Frog : MonoBehaviour
 
     private void MakeHappy()
     {
-        image.sprite = happySprite;
+        spriteRenderer.sprite = happySprite;
+    }
+
+    private void FlyAway()
+    {
+        Vector2 frogSize = rectTransform.sizeDelta;
+        rectTransform.sizeDelta = new Vector2(frogSize.x - 4, frogSize.y - 4);
+        gameObject.transform.Translate(xSpeed, ySpeed, 0);
+        xSpeed = xSpeed < 0 ? xSpeed - 0.1f : xSpeed + 0.1f;
+        ySpeed = ySpeed < 0 ? ySpeed - 0.65f : ySpeed + 0.65f;
     }
 
     private void initFlyDestination()
     {
         var rnd = UnityEngine.Random.value;
         var rnd1 = UnityEngine.Random.value;
-     
+
         xSpeed = rnd > 0.5f ? 5f : -5f;
         ySpeed = rnd1 > 0.5f ? 5f : -5f;
     }
