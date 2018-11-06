@@ -18,7 +18,7 @@ public class OnSceneClick : MonoBehaviour {
 
     void OnGUI()
     {
-		if(Input.GetButtonDown("Fire1"))
+		if(Event.current.type == EventType.MouseDown)
 		{
 			spawnFlower();	
 		}

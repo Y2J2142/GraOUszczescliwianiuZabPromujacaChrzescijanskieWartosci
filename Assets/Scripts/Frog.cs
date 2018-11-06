@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -14,11 +15,15 @@ public class Frog : MonoBehaviour
     [SerializeField]
     public int currentSadnessLevel = 10;
     private Image image;
+    private float xSpeed;
+    private float ySpeed;
+    
 
     void Start()
     {
         image = gameObject.GetComponent<Image>();
         image.sprite = sadSprite;
+        initFlyDestination();
     }
 
     void Update()
@@ -29,8 +34,9 @@ public class Frog : MonoBehaviour
     {
         Vector2 frogSize = gameObject.GetComponent<Image>().rectTransform.sizeDelta;
         image.rectTransform.sizeDelta = new Vector2(frogSize.x - 4, frogSize.y - 4);
-        gameObject.transform.Rotate(new Vector3(0, 0, 15));
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, behindUpperLeftCorner(), 15);
+        gameObject.transform.Translate(xSpeed, ySpeed, 0);
+        xSpeed = xSpeed < 0 ? xSpeed - 0.1f : xSpeed + 0.1f;
+        ySpeed = ySpeed < 0 ? ySpeed - 0.65f : ySpeed + 0.65f;
     }
 
     public void TakeFlowers(int flowers)
@@ -58,11 +64,12 @@ public class Frog : MonoBehaviour
         image.sprite = happySprite;
     }
 
-    private Vector3 behindUpperLeftCorner()
+    private void initFlyDestination()
     {
-        Vector3[] worldCorners = new Vector3[4];
-        GameObject.Find("Canvas").GetComponent<RectTransform>().GetWorldCorners(worldCorners);
-        Vector3 leftTopCorner = worldCorners[1];
-        return new Vector3(leftTopCorner.x - 100, leftTopCorner.y + 150, leftTopCorner.z);
+        var rnd = UnityEngine.Random.value;
+        var rnd1 = UnityEngine.Random.value;
+     
+        xSpeed = rnd > 0.5f ? 5f : -5f;
+        ySpeed = rnd1 > 0.5f ? 5f : -5f;
     }
 }
