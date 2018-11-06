@@ -42,16 +42,16 @@ public class Frog : MonoBehaviour
     public void TakeFlowers(int flowers)
     {
         ReceiveHapiness(flowers);
-        if (!IsSad())
-        {
-            MakeHappy();
-        }
     }
 
     private void ReceiveHapiness(int happiness)
     {
         Debug.Log("Frog received " + happiness + " happiness.");
         currentSadnessLevel -= happiness;
+        if(!IsSad())
+        {
+            MakeHappy();
+        }
     }
 
     public bool IsSad()
