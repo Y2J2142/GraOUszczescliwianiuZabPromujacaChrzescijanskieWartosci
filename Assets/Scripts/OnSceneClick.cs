@@ -36,11 +36,6 @@ public class OnSceneClick : MonoBehaviour {
 				this.frog.TakeFlowers(10);
 			}
 		});
-
-		if(!frog.IsSad())
-		{
-			this.frog.FlyAway();
-		}
 	}
 
 	void spawnFlower()

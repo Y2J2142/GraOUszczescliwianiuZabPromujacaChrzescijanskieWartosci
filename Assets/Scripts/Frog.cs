@@ -13,49 +13,55 @@ public class Frog : MonoBehaviour
 
     [SerializeField]
     public int currentSadnessLevel = 10;
-    private Image image;
+    private SpriteRenderer spriteRenderer;
+    private RectTransform rectTransform;
 
     void Start()
     {
-        image = gameObject.GetComponent<Image>();
-        image.sprite = sadSprite;
+        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
+        spriteRenderer.sprite = sadSprite;
+        rectTransform = gameObject.GetComponent<RectTransform>();
     }
 
     void Update()
     {
-    }
-
-    public void FlyAway()
-    {
-        Vector2 frogSize = gameObject.GetComponent<Image>().rectTransform.sizeDelta;
-        image.rectTransform.sizeDelta = new Vector2(frogSize.x - 4, frogSize.y - 4);
-        gameObject.transform.Rotate(new Vector3(0, 0, 15));
-        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, behindUpperLeftCorner(), 15);
+        if (!IsSad())
+        {
+            FlyAway();
+        }
     }
 
     public void TakeFlowers(int flowers)
     {
         ReceiveHapiness(flowers);
-        if (!IsSad())
-        {
-            MakeHappy();
-        }
     }
 
     private void ReceiveHapiness(int happiness)
     {
         Debug.Log("Frog received " + happiness + " happiness.");
         currentSadnessLevel -= happiness;
+        if (!IsSad())
+        {
+            MakeHappy();
+        }
     }
 
-    public bool IsSad()
+    private bool IsSad()
     {
         return currentSadnessLevel > 0;
     }
 
     private void MakeHappy()
     {
-        image.sprite = happySprite;
+        spriteRenderer.sprite = happySprite;
+    }
+
+    private void FlyAway()
+    {
+        Vector2 frogSize = rectTransform.sizeDelta;
+        rectTransform.sizeDelta = new Vector2(frogSize.x - 4, frogSize.y - 4);
+        gameObject.transform.Rotate(new Vector3(0, 0, 15));
+        gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, behindUpperLeftCorner(), 15);
     }
 
     private Vector3 behindUpperLeftCorner()
