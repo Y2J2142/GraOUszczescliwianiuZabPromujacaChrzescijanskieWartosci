@@ -24,6 +24,7 @@ public class OnSceneClick : MonoBehaviour
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
 		this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
+        Screen.orientation = ScreenOrientation.Portrait;
     }
 
     void OnGUI()
