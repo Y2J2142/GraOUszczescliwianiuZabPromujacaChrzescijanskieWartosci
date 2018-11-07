@@ -13,18 +13,44 @@ public class Frog : MonoBehaviour
     public Sprite happySprite;
 
     [SerializeField]
+    public Sprite headgearSprite;
+
+    [SerializeField]
+    public Sprite outfitSprite;
+
+    [SerializeField]
     public int currentSadnessLevel = 10;
-    private SpriteRenderer spriteRenderer;
-    private RectTransform rectTransform;
+    private SpriteRenderer bodySpriteRenderer;
+    private SpriteRenderer headGearSpriteRenderer;
+    private SpriteRenderer outfitSpriteRenderer;
     private float xSpeed;
     private float ySpeed;
 
     void Start()
     {
-        spriteRenderer = gameObject.GetComponent<SpriteRenderer>();
-        spriteRenderer.sprite = sadSprite;
-        rectTransform = gameObject.GetComponent<RectTransform>();
+        bodySpriteRenderer = gameObject.transform.Find("Body").GetComponent<SpriteRenderer>();
+        headGearSpriteRenderer = gameObject.transform.Find("Headgear").GetComponent<SpriteRenderer>();
+        outfitSpriteRenderer = gameObject.transform.Find("Outfit").GetComponent<SpriteRenderer>();
+        SetFrogSprites();
         initFlyDestination();
+    }
+
+    private void SetFrogSprites()
+    {
+        if (sadSprite != null)
+        {
+            bodySpriteRenderer.sprite = sadSprite;
+        }
+
+        if (headgearSprite != null)
+        {
+            headGearSpriteRenderer.sprite = headgearSprite;
+        }
+
+        if (outfitSprite != null)
+        {
+            outfitSpriteRenderer.sprite = outfitSprite;
+        }
     }
 
     void Update()
@@ -57,7 +83,13 @@ public class Frog : MonoBehaviour
 
     private void MakeHappy()
     {
-        spriteRenderer.sprite = happySprite;
+        if (happySprite != null)
+        {
+            bodySpriteRenderer.sprite = happySprite;
+        }
+        bodySpriteRenderer.sortingOrder += 5;
+        outfitSpriteRenderer.sortingOrder += 5;
+        headGearSpriteRenderer.sortingOrder += 5;
     }
 
     private void FlyAway()
@@ -66,11 +98,11 @@ public class Frog : MonoBehaviour
         gameObject.transform.position = new Vector3(xSpeed, ySpeed, 0);
         xSpeed = xSpeed < 0 ? xSpeed - 5f : xSpeed + 5f;
         ySpeed = ySpeed < 0 ? ySpeed - 15f : ySpeed + 15f;
-        if(xSpeed < 0)
+        if (xSpeed < 0)
         {
             gameObject.transform.Rotate(new Vector3(0, 0, 2.5f));
         }
-        else 
+        else
         {
             gameObject.transform.Rotate(new Vector3(0, 0, -2.5f));
         }
