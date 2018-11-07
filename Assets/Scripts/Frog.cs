@@ -65,7 +65,7 @@ public class Frog : MonoBehaviour
         gameObject.transform.localScale += new Vector3(-0.75f, -0.75f, 0);
         gameObject.transform.position = new Vector3(xSpeed, ySpeed, 0);
         xSpeed = xSpeed < 0 ? xSpeed - 5f : xSpeed + 5f;
-        ySpeed = ySpeed < 0 ? ySpeed - 15 : ySpeed + 15f;
+        ySpeed = ySpeed < 0 ? ySpeed - 15f : ySpeed + 15f;
         if(xSpeed < 0)
         {
             gameObject.transform.Rotate(new Vector3(0, 0, 2.5f));
