@@ -13,15 +13,17 @@ public class OnSceneClick : MonoBehaviour
     private Frog frogScript;
     private List<GameObject> happyFrogs;
     private GameObject currentFrog;
+	private RzabaSpawner rzabkaGiver;
+
 
     void Start()
     {
         this.frogScript = GameObject.Find("Frog").GetComponent<Frog>();
         this.flowerPrefab = Resources.Load<GameObject>("Prefabs/Flower");
-        this.frogPrefab = Resources.Load<GameObject>("Prefabs/Frog");
         this.spawnedFlowers = new List<GameObject>();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
+		this.rzabkaGiver = GetComponent<RzabaSpawner>();
     }
 
     void OnGUI()
@@ -49,12 +51,7 @@ public class OnSceneClick : MonoBehaviour
 
         if (!frogScript.IsSad())
         {
-            var frogo = Instantiate(this.frogPrefab, this.frogScript.transform.position, Quaternion.identity);
-            frogo.transform.SetParent(GameObject.Find("Canvas").transform);
-            this.happyFrogs.Add(this.currentFrog);
-            StartCoroutine(Remover(this.currentFrog));
-            this.currentFrog = frogo;
-            this.frogScript = this.currentFrog.GetComponent<Frog>();
+            ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
     }
 
@@ -64,6 +61,14 @@ public class OnSceneClick : MonoBehaviour
         happyFrogs.Remove(frogo);
         Destroy(frogo);
     }
+
+	private void ZaboPodmieniarka(GameObject frog)
+	{
+            this.happyFrogs.Add(this.currentFrog);
+            StartCoroutine(Remover(this.currentFrog));
+            this.currentFrog = frog;
+            this.frogScript = this.currentFrog.GetComponent<Frog>();
+	}
 
     void spawnFlower()
     {
