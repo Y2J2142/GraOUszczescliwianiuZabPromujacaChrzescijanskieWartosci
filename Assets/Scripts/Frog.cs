@@ -7,24 +7,15 @@ using UnityEngine.UI;
 public class Frog : MonoBehaviour
 {
     [SerializeField]
-    public Sprite sadSprite;
+    public FrogData frogData;
 
-    [SerializeField]
-    public Sprite happySprite;
-
-    [SerializeField]
-    public Sprite headgearSprite;
-
-    [SerializeField]
-    public Sprite outfitSprite;
-
-    [SerializeField]
-    public int currentSadnessLevel = 10;
     private SpriteRenderer bodySpriteRenderer;
     private SpriteRenderer headGearSpriteRenderer;
     private SpriteRenderer outfitSpriteRenderer;
     private float xSpeed;
     private float ySpeed;
+
+    private int currentSadnessLevel;
 
     void Start()
     {
@@ -33,23 +24,24 @@ public class Frog : MonoBehaviour
         outfitSpriteRenderer = gameObject.transform.Find("Outfit").GetComponent<SpriteRenderer>();
         SetFrogSprites();
         initFlyDestination();
+        currentSadnessLevel = frogData.maximumSadnessLevel;
     }
 
     private void SetFrogSprites()
     {
-        if (sadSprite != null)
+        if (frogData.sadSprite != null)
         {
-            bodySpriteRenderer.sprite = sadSprite;
+            bodySpriteRenderer.sprite = frogData.sadSprite;
         }
 
-        if (headgearSprite != null)
+        if (frogData.headgearSprite != null)
         {
-            headGearSpriteRenderer.sprite = headgearSprite;
+            headGearSpriteRenderer.sprite = frogData.headgearSprite;
         }
 
-        if (outfitSprite != null)
+        if (frogData.outfitSprite != null)
         {
-            outfitSpriteRenderer.sprite = outfitSprite;
+            outfitSpriteRenderer.sprite = frogData.outfitSprite;
         }
     }
 
@@ -83,9 +75,9 @@ public class Frog : MonoBehaviour
 
     private void MakeHappy()
     {
-        if (happySprite != null)
+        if (frogData.happySprite != null)
         {
-            bodySpriteRenderer.sprite = happySprite;
+            bodySpriteRenderer.sprite = frogData.happySprite;
         }
         bodySpriteRenderer.sortingOrder += 5;
         outfitSpriteRenderer.sortingOrder += 5;
