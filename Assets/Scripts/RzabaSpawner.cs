@@ -5,7 +5,6 @@ using UnityEngine.UI;
 
 public class RzabaSpawner : MonoBehaviour {
 	public GameObject frogPrefab;
-	public Frog original;
 	
 	void Start () {
     	this.frogPrefab = Resources.Load<GameObject>("Prefabs/Frog");
@@ -14,7 +13,7 @@ public class RzabaSpawner : MonoBehaviour {
 	void Update () {
 	}
 	public GameObject ProszemDacRzabke(Vector3 pos) {
-		var rzabulec = Instantiate(Resources.Load<GameObject>("Prefabs/Frog"), pos, Quaternion.identity);
+		var rzabulec = Instantiate(frogPrefab, pos, Quaternion.identity);
 		rzabulec.transform.SetParent(GameObject.Find("Canvas").transform);
 		return rzabulec;
 	}

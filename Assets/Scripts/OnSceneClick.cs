@@ -23,7 +23,7 @@ public class OnSceneClick : MonoBehaviour
         this.spawnedFlowers = new List<GameObject>();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
-		this.rzabkaGiver = GetComponent<RzabaSpawner>();
+		this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
     }
 
     void OnGUI()
