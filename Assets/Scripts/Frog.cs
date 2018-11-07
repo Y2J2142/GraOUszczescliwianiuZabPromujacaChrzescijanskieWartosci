@@ -94,7 +94,11 @@ public class Frog : MonoBehaviour
 
     private void FlyAway()
     {
-        gameObject.transform.localScale += new Vector3(-0.75f, -0.75f, 0);
+        if(gameObject.transform.localScale.x > 0 || gameObject.transform.localScale.y > 0)
+        {
+            gameObject.transform.localScale = new Vector3(gameObject.transform.localScale.x -0.75f, gameObject.transform.localScale.y -0.75f, 0);
+        }
+    
         gameObject.transform.position = new Vector3(xSpeed, ySpeed, 0);
         xSpeed = xSpeed < 0 ? xSpeed - 5f : xSpeed + 5f;
         ySpeed = ySpeed < 0 ? ySpeed - 15f : ySpeed + 15f;
