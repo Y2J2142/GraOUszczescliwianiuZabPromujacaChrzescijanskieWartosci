@@ -41,3 +41,9 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 2561089601
+    locked: 0
+  - name: Frpg
+    uniqueID: 3298955271
+    locked: 0
