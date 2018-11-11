@@ -8,19 +8,20 @@ public class OnSceneClick : MonoBehaviour
 {
 
     private GameObject flowerPrefab;
-    private List<GameObject> spawnedFlowers;
     private GameObject frogPrefab;
     private Frog frogScript;
     private List<GameObject> happyFrogs;
     private GameObject currentFrog;
 	private RzabaSpawner rzabkaGiver;
 
+    private FlowerManager flowerManager;
+
 
     void Start()
     {
         this.frogScript = GameObject.Find("Frog").GetComponent<Frog>();
         this.flowerPrefab = Resources.Load<GameObject>("Prefabs/Flower");
-        this.spawnedFlowers = new List<GameObject>();
+        this.flowerManager = new FlowerManager();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
 		this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
@@ -37,15 +38,13 @@ public class OnSceneClick : MonoBehaviour
 
     void Update()
     {
-        this.spawnedFlowers.ForEach(flower =>
+        this.flowerManager.flowers.ForEach(flower =>
         {
-            flower.transform.Rotate(new Vector3(0, 0, 2));
-            flower.transform.position = Vector3.MoveTowards(flower.transform.position, this.frogScript.transform.position, 15);
-
-            if (flower.transform.position == frogScript.transform.position)
+            flower.FlyToFrog(this.frogScript.gameObject);
+            if (flower.gameObject.transform.position == frogScript.transform.position)
             {
-                this.spawnedFlowers.Remove(flower);
-                Destroy(flower, 0);
+                this.flowerManager.flowers.Remove(flower);
+                Destroy(flower.gameObject, 0);
                 this.frogScript.TakeFlowers(10);
             }
         });
@@ -74,8 +73,8 @@ public class OnSceneClick : MonoBehaviour
     void spawnFlower()
     {
         Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        GameObject spawnedFlower = Instantiate(this.flowerPrefab, mousePosition, Quaternion.identity);
-        spawnedFlower.transform.SetParent(GameObject.Find("Canvas").transform);
-        this.spawnedFlowers.Add(spawnedFlower);
+        Flower spawnedFlower = new Flower(Instantiate(this.flowerPrefab, mousePosition, Quaternion.identity));
+        spawnedFlower.gameObject.transform.SetParent(GameObject.Find("Canvas").transform);
+        this.flowerManager.flowers.Add(spawnedFlower);
     }
 }
