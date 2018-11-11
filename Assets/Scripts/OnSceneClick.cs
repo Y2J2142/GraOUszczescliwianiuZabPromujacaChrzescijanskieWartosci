@@ -6,21 +6,17 @@ using UnityEngine.UI;
 
 public class OnSceneClick : MonoBehaviour
 {
-
-    private GameObject flowerPrefab;
     private GameObject frogPrefab;
     private Frog frogScript;
     private List<GameObject> happyFrogs;
     private GameObject currentFrog;
 	private RzabaSpawner rzabkaGiver;
-
     private FlowerManager flowerManager;
 
 
     void Start()
     {
         this.frogScript = GameObject.Find("Frog").GetComponent<Frog>();
-        this.flowerPrefab = Resources.Load<GameObject>("Prefabs/Flower");
         this.flowerManager = new FlowerManager();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
@@ -32,7 +28,7 @@ public class OnSceneClick : MonoBehaviour
     {
         if (Event.current.type == EventType.MouseDown)
         {
-            spawnFlower();
+            this.flowerManager.SpawnFlower();
         }
     }
 
@@ -43,8 +39,7 @@ public class OnSceneClick : MonoBehaviour
             flower.FlyToFrog(this.frogScript.gameObject);
             if (flower.gameObject.transform.position == frogScript.transform.position)
             {
-                this.flowerManager.flowers.Remove(flower);
-                Destroy(flower.gameObject, 0);
+                this.flowerManager.RemoveFlower(flower);
                 this.frogScript.TakeFlowers(10);
             }
         });
@@ -69,12 +64,4 @@ public class OnSceneClick : MonoBehaviour
             this.currentFrog = frog;
             this.frogScript = this.currentFrog.GetComponent<Frog>();
 	}
-
-    void spawnFlower()
-    {
-        Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        Flower spawnedFlower = new Flower(Instantiate(this.flowerPrefab, mousePosition, Quaternion.identity));
-        spawnedFlower.gameObject.transform.SetParent(GameObject.Find("Canvas").transform);
-        this.flowerManager.flowers.Add(spawnedFlower);
-    }
 }
