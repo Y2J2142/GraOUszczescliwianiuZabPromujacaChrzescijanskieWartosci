@@ -12,6 +12,7 @@ public class OnSceneClick : MonoBehaviour
     private GameObject currentFrog;
 	private RzabaSpawner rzabkaGiver;
     private FlowerManager flowerManager;
+    private HudCounterController hudCounterController;
 
 
     void Start()
@@ -21,6 +22,7 @@ public class OnSceneClick : MonoBehaviour
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
 		this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
+        this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
         Screen.orientation = ScreenOrientation.Portrait;
     }
 
@@ -37,10 +39,11 @@ public class OnSceneClick : MonoBehaviour
         this.flowerManager.flowers.ForEach(flower =>
         {
             flower.FlyToFrog(this.frogScript.gameObject);
-            if (flower.gameObject.transform.position == frogScript.transform.position)
+            if (flower.hitsFrog(this.frogScript.gameObject))
             {
                 this.flowerManager.RemoveFlower(flower);
                 this.frogScript.TakeFlowers(10);
+                this.hudCounterController.Increment();
             }
         });
 

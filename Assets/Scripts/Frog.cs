@@ -8,7 +8,7 @@ public class Frog : MonoBehaviour
 {
     [SerializeField]
     public FrogData frogData;
-
+    private HudCounterController hudCounterController;
     private SpriteRenderer bodySpriteRenderer;
     private SpriteRenderer headGearSpriteRenderer;
     private SpriteRenderer outfitSpriteRenderer;
@@ -25,6 +25,8 @@ public class Frog : MonoBehaviour
         SetFrogSprites();
         initFlyDestination();
         currentSadnessLevel = frogData.maximumSadnessLevel;
+
+        
     }
 
     private void SetFrogSprites()
@@ -60,7 +62,6 @@ public class Frog : MonoBehaviour
 
     private void ReceiveHapiness(int happiness)
     {
-        Debug.Log("Frog received " + happiness + " happiness.");
         currentSadnessLevel -= happiness;
         if (!IsSad())
         {
