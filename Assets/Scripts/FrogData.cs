@@ -10,4 +10,7 @@ public class FrogData : ScriptableObject
     public Sprite headgearSprite;
     public Sprite outfitSprite;
     public int maximumSadnessLevel = 10;
+
+    [Tooltip("im wieksze tym czesciej sie pojawia")]
+    public int rarity = 100;
 }

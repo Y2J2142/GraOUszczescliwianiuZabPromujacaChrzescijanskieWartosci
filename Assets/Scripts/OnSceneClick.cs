@@ -10,7 +10,7 @@ public class OnSceneClick : MonoBehaviour
     private Frog frogScript;
     private List<GameObject> happyFrogs;
     private GameObject currentFrog;
-	private RzabaSpawner rzabkaGiver;
+    private RzabaSpawner rzabkaGiver;
     private FlowerManager flowerManager;
     private HudCounterController hudCounterController;
     private ParticleSystem frogThunder;
@@ -18,11 +18,11 @@ public class OnSceneClick : MonoBehaviour
 
     void Start()
     {
-        this.frogScript = GameObject.Find("Frog").GetComponent<Frog>();
+        this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
+        ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(new Vector3(0, 0, 0)));
         this.flowerManager = new FlowerManager();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
-		this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
         this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
         this.frogThunder = GameObject.Find("FrogThunder").GetComponent<ParticleSystem>();
 
@@ -46,13 +46,13 @@ public class OnSceneClick : MonoBehaviour
             {
                 this.flowerManager.RemoveFlower(flower);
                 this.frogScript.TakeFlowers(10);
-                this.hudCounterController.Increment();
-                this.frogThunder.Play();
             }
         });
 
         if (!frogScript.IsSad())
         {
+            this.hudCounterController.Increment();
+            this.frogThunder.Play();
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
     }
@@ -64,11 +64,14 @@ public class OnSceneClick : MonoBehaviour
         Destroy(frogo);
     }
 
-	private void ZaboPodmieniarka(GameObject frog)
-	{
+    private void ZaboPodmieniarka(GameObject frog)
+    {
+        if (currentFrog != null)
+        {
             this.happyFrogs.Add(this.currentFrog);
             StartCoroutine(Remover(this.currentFrog));
-            this.currentFrog = frog;
-            this.frogScript = this.currentFrog.GetComponent<Frog>();
-	}
+        }
+        this.currentFrog = frog;
+        this.frogScript = this.currentFrog.GetComponent<Frog>();
+    }
 }

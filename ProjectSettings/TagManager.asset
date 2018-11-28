@@ -44,9 +44,12 @@ TagManager:
   - name: Background
     uniqueID: 2561089601
     locked: 0
-  - name: FrogThunder
+  - name: pod kamulcem
     uniqueID: 36008075
     locked: 0
-  - name: Frpg
+  - name: kamulec
+    uniqueID: 4140749289
+    locked: 0
+  - name: na kamulcu
     uniqueID: 3298955271
     locked: 0

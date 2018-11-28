@@ -9,11 +9,11 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 753e53939fd20ac42b872e1cd1fca4cf, type: 3}
-  m_Name: BasicFrog
+  m_Name: EpicFrog
   m_EditorClassIdentifier: 
-  sadSprite: {fileID: 21300000, guid: 1893ec8d61bda67488040ac90b98aef7, type: 3}
-  happySprite: {fileID: 21300000, guid: dc5109a7a6e329342a6d404b2ca794e2, type: 3}
+  sadSprite: {fileID: 21300000, guid: 4c41dd6b08c5a724181a4847374ff999, type: 3}
+  happySprite: {fileID: 21300000, guid: ec97676ef603ff846ab1b180a1dd8bda, type: 3}
   headgearSprite: {fileID: 0}
   outfitSprite: {fileID: 0}
-  maximumSadnessLevel: 10
-  rarity: 200
+  maximumSadnessLevel: 500
+  rarity: 10
