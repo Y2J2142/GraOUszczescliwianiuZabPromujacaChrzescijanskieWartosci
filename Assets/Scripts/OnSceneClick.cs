@@ -13,6 +13,7 @@ public class OnSceneClick : MonoBehaviour
 	private RzabaSpawner rzabkaGiver;
     private FlowerManager flowerManager;
     private HudCounterController hudCounterController;
+    private ParticleSystem frogThunder;
 
 
     void Start()
@@ -23,6 +24,8 @@ public class OnSceneClick : MonoBehaviour
         this.currentFrog = GameObject.Find("Frog");
 		this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
         this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
+        this.frogThunder = GameObject.Find("FrogThunder").GetComponent<ParticleSystem>();
+
         Screen.orientation = ScreenOrientation.Portrait;
     }
 
@@ -44,6 +47,7 @@ public class OnSceneClick : MonoBehaviour
                 this.flowerManager.RemoveFlower(flower);
                 this.frogScript.TakeFlowers(10);
                 this.hudCounterController.Increment();
+                this.frogThunder.Play();
             }
         });
 
