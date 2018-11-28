@@ -15,5 +15,5 @@ MonoBehaviour:
   happySprite: {fileID: 21300000, guid: 336db383462c53b43ad7b7e440777009, type: 3}
   headgearSprite: {fileID: 0}
   outfitSprite: {fileID: 0}
-  maximumSadnessLevel: 100
+  maximumSadnessLevel: 200
   rarity: 20
