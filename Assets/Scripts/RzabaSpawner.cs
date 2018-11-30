@@ -23,17 +23,17 @@ public class RzabaSpawner : MonoBehaviour {
 	}
 
 	private FrogData GetRandomFrogType(){
-		List<int> indexList = new List<int>();
 
-		for(int i = 0; i < frogTypes.Count; i++) {
-			for(int j = 0; j < frogTypes[i].rarity; j++){
-				indexList.Add(i);
+		int sum = 0;
+		frogTypes.ForEach(kamulec => sum += kamulec.rarity);
+		int rnd = UnityEngine.Random.Range(0, sum);
+		int counter = 0;
+		foreach (var kamyczek in frogTypes) {
+			counter += kamyczek.rarity;
+			if (rnd <= counter) {
+				return kamyczek;
 			}
 		}
-
-		var rnd = UnityEngine.Random.value;
-		var index = indexList[(int)(indexList.Count * rnd)];
-		Debug.Log(index);
-		return frogTypes[index];
+		return frogTypes[frogTypes.Count - 1];
 	}
 }
