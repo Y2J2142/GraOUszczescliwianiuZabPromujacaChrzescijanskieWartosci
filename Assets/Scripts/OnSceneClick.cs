@@ -62,7 +62,7 @@ public class OnSceneClick : MonoBehaviour
 
 
         this.flowerManager.flowers.ForEach(flower =>
-        {
+        {+
             flower.FlyToFrog(this.frogScript.gameObject);
             if (flower.hitsFrog(this.frogScript.gameObject))
             {
@@ -70,7 +70,6 @@ public class OnSceneClick : MonoBehaviour
                 this.flowerManager.RemoveFlower(flower);
                 float happinesToDeal = flower.Happines;
                 modifiers.ForEach( m => {happinesToDeal *= m.modifier;});
-                Debug.Log(happinesToDeal);
                 this.frogScript.TakeFlowers(happinesToDeal);
             }
         });
