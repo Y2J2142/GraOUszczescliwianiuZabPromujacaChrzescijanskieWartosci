@@ -25,7 +25,7 @@ public class FlowerManager {
 		Vector3 mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
         Flower spawnedFlower = new Flower(GameObject.Instantiate(this.flowerPrefab, mousePosition, Quaternion.identity));
 		spawnedFlower.Happines = 10;
-        spawnedFlower.gameObject.transform.SetParent(GameObject.Find("Canvas").transform);
+        spawnedFlower.gameObject.transform.SetParent(GameObject.Find("Game").transform);
         this.flowers.Add(spawnedFlower);
 	}
 

@@ -19,7 +19,7 @@ public class RzabaSpawner : MonoBehaviour {
 	}
 	public GameObject ProszemDacRzabke(Vector3 pos) {
 		var rzabulec = Instantiate(frogPrefab, pos, Quaternion.identity);
-		rzabulec.transform.SetParent(GameObject.Find("Canvas").transform);
+		rzabulec.transform.SetParent(GameObject.Find("Game").transform);
 		rzabulec.GetComponent<Frog>().frogData = GetRandomFrogType();
 		rzabulec.GetComponent<Frog>().CurrentSadnessmultiplier = currentSadnessMultiplier;
 		currentSadnessMultiplier += 0.01;

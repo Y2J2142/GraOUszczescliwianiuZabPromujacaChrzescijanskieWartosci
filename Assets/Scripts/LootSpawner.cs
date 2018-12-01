@@ -26,7 +26,7 @@ public class LootSpawner : MonoBehaviour
         for (int i = 0; i < amount; i++)
         {
             var spawnedCoin = Instantiate(coinPrefab, frog.transform.position + Random.insideUnitSphere * 100, Quaternion.identity);
-            spawnedCoin.transform.SetParent(GameObject.Find("Canvas").transform);
+            spawnedCoin.transform.SetParent(GameObject.Find("Game").transform);
             this.coins.Add(spawnedCoin);
         }
     }
