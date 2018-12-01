@@ -17,4 +17,4 @@ MonoBehaviour:
   outfitSprite: {fileID: 0}
   kamykAnimation: {fileID: 9100000, guid: 5877dd384a1e0e34c8db4ba4cf796966, type: 2}
   maximumSadnessLevel: 100
-  rarity: 20
+  rarity: 400
