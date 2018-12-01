@@ -19,6 +19,7 @@ public class RzabaSpawner : MonoBehaviour {
 		var rzabulec = Instantiate(frogPrefab, pos, Quaternion.identity);
 		rzabulec.transform.SetParent(GameObject.Find("Canvas").transform);
 		rzabulec.GetComponent<Frog>().frogData = GetRandomFrogType();
+		rzabulec.transform.position = new Vector3(0, -50, 0);
 		return rzabulec;
 	}
 

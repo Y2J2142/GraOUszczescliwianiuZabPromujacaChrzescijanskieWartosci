@@ -12,6 +12,7 @@ public class Frog : MonoBehaviour
     private SpriteRenderer bodySpriteRenderer;
     private SpriteRenderer headGearSpriteRenderer;
     private SpriteRenderer outfitSpriteRenderer;
+    private Animator animator;
     private float xSpeed;
     private float ySpeed;
 
@@ -22,11 +23,12 @@ public class Frog : MonoBehaviour
         bodySpriteRenderer = gameObject.transform.Find("Body").GetComponent<SpriteRenderer>();
         headGearSpriteRenderer = gameObject.transform.Find("Headgear").GetComponent<SpriteRenderer>();
         outfitSpriteRenderer = gameObject.transform.Find("Outfit").GetComponent<SpriteRenderer>();
+        animator = gameObject.transform.Find("Body").GetComponent<Animator>();
         SetFrogSprites();
         initFlyDestination();
         currentSadnessLevel = frogData.maximumSadnessLevel;
 
-        
+
     }
 
     private void SetFrogSprites()
@@ -44,6 +46,11 @@ public class Frog : MonoBehaviour
         if (frogData.outfitSprite != null)
         {
             outfitSpriteRenderer.sprite = frogData.outfitSprite;
+        }
+
+        if (frogData.kamykAnimation != null)
+        {
+            animator.runtimeAnimatorController = frogData.kamykAnimation;
         }
     }
 
@@ -76,6 +83,7 @@ public class Frog : MonoBehaviour
 
     private void MakeHappy()
     {
+        animator.runtimeAnimatorController = null;
         if (frogData.happySprite != null)
         {
             bodySpriteRenderer.sprite = frogData.happySprite;

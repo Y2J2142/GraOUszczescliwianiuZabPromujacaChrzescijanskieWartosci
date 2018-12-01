@@ -9,6 +9,7 @@ public class FrogData : ScriptableObject
     public Sprite happySprite;
     public Sprite headgearSprite;
     public Sprite outfitSprite;
+    public RuntimeAnimatorController kamykAnimation;
     public int maximumSadnessLevel = 10;
 
     [Tooltip("im wieksze tym czesciej sie pojawia")]

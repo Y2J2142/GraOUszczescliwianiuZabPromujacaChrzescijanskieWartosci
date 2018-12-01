@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 753e53939fd20ac42b872e1cd1fca4cf, type: 3}
   m_Name: RareFrog
   m_EditorClassIdentifier: 
-  sadSprite: {fileID: 21300000, guid: c220d1f7ff1fb3348a87d026f128a89e, type: 3}
-  happySprite: {fileID: 21300000, guid: 336db383462c53b43ad7b7e440777009, type: 3}
+  sadSprite: {fileID: 21300002, guid: 326f5063a095d684a84d66f03b4e9694, type: 3}
+  happySprite: {fileID: 21300000, guid: 326f5063a095d684a84d66f03b4e9694, type: 3}
   headgearSprite: {fileID: 0}
   outfitSprite: {fileID: 0}
-  maximumSadnessLevel: 200
+  kamykAnimation: {fileID: 9100000, guid: 5877dd384a1e0e34c8db4ba4cf796966, type: 2}
+  maximumSadnessLevel: 100
   rarity: 20
