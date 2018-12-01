@@ -8,6 +8,8 @@ public class RzabaSpawner : MonoBehaviour {
 
 	[SerializeField]
 	List<FrogData> frogTypes;
+
+	double currentSadnessMultiplier = 1.0;
 	
 	void Start () {
     	this.frogPrefab = Resources.Load<GameObject>("Prefabs/Frog");
@@ -19,6 +21,8 @@ public class RzabaSpawner : MonoBehaviour {
 		var rzabulec = Instantiate(frogPrefab, pos, Quaternion.identity);
 		rzabulec.transform.SetParent(GameObject.Find("Canvas").transform);
 		rzabulec.GetComponent<Frog>().frogData = GetRandomFrogType();
+		rzabulec.GetComponent<Frog>().CurrentSadnessmultiplier = currentSadnessMultiplier;
+		currentSadnessMultiplier += 0.1;
 		rzabulec.transform.position = new Vector3(0, -50, 0);
 		return rzabulec;
 	}

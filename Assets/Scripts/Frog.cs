@@ -16,7 +16,22 @@ public class Frog : MonoBehaviour
     private float xSpeed;
     private float ySpeed;
 
+    private double currentSadnessmultiplier;
+
     private int currentSadnessLevel;
+
+    public double CurrentSadnessmultiplier
+    {
+        get
+        {
+            return currentSadnessmultiplier;
+        }
+
+        set
+        {
+            currentSadnessmultiplier = value;
+        }
+    }
 
     void Start()
     {
@@ -26,9 +41,7 @@ public class Frog : MonoBehaviour
         animator = gameObject.transform.Find("Body").GetComponent<Animator>();
         SetFrogSprites();
         initFlyDestination();
-        currentSadnessLevel = frogData.maximumSadnessLevel;
-
-
+        currentSadnessLevel = Convert.ToInt32(frogData.maximumSadnessLevel * CurrentSadnessmultiplier);
     }
 
     private void SetFrogSprites()
