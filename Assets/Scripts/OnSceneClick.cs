@@ -37,6 +37,13 @@ public class OnSceneClick : MonoBehaviour
         {
             this.flowerManager.SpawnFlower();
         }
+        Texture2D texture = new Texture2D(1, 1);
+        texture.SetPixel(0,0, Color.red);
+        texture.Apply();
+        GUI.skin.box.normal.background = texture;
+        float width = (float)frogScript.CurrentSadnessLevel * 100.0f / (float)frogScript.fullSadness;
+        width /= 100.0f; 
+        GUI.Box(new Rect(0,frogScript.transform.position.y, Screen.width * width , 100), GUIContent.none);
     }
 
     void Update()

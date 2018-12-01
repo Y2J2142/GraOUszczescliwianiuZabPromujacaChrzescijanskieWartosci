@@ -19,6 +19,8 @@ public class Frog : MonoBehaviour
     private double currentSadnessmultiplier;
 
     private int currentSadnessLevel;
+    
+    public int fullSadness;
 
     public double CurrentSadnessmultiplier
     {
@@ -33,6 +35,12 @@ public class Frog : MonoBehaviour
         }
     }
 
+    public int CurrentSadnessLevel 
+    {
+        get { return currentSadnessLevel;}
+        set { currentSadnessLevel = value;}
+    }
+
     void Start()
     {
         bodySpriteRenderer = gameObject.transform.Find("Body").GetComponent<SpriteRenderer>();
@@ -42,6 +50,7 @@ public class Frog : MonoBehaviour
         SetFrogSprites();
         initFlyDestination();
         currentSadnessLevel = Convert.ToInt32(frogData.maximumSadnessLevel * CurrentSadnessmultiplier);
+        fullSadness = currentSadnessLevel;
     }
 
     private void SetFrogSprites()
@@ -93,6 +102,10 @@ public class Frog : MonoBehaviour
     {
         return currentSadnessLevel > 0;
     }
+    public bool isRare()
+    {
+        return frogData.rarity < 500;
+    }  
 
     private void MakeHappy()
     {
