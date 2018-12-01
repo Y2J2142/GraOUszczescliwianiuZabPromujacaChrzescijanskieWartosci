@@ -37,8 +37,8 @@ public class Frog : MonoBehaviour
 
     public float CurrentSadnessLevel 
     {
-        get { return currentSadnessLevel;}
-        set { currentSadnessLevel = value;}
+        get { return currentSadnessLevel; }
+        set { currentSadnessLevel = value; }
     }
 
     void Start()
@@ -78,6 +78,10 @@ public class Frog : MonoBehaviour
 
     void Update()
     {
+        if (!MenuController.isGameActive())
+        {
+            return;
+        }
         if (!IsSad())
         {
             FlyAway();
@@ -105,7 +109,7 @@ public class Frog : MonoBehaviour
     public bool isRare()
     {
         return frogData.rarity < 500;
-    }  
+    }
 
     private void MakeHappy()
     {

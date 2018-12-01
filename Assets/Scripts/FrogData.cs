@@ -5,6 +5,7 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "FrogData", menuName = "Frog/NewFrog", order = 1)]
 public class FrogData : ScriptableObject
 {
+    public enum FrogType { Normal, Rare, Epic, Legendary }
     public Sprite sadSprite;
     public Sprite happySprite;
     public Sprite headgearSprite;
@@ -16,4 +17,5 @@ public class FrogData : ScriptableObject
     public int rarity = 100;
     public int minCoinsLoot = 1;
     public int maxCoinsLoot = 1;
+    public FrogType type = FrogType.Normal;
 }

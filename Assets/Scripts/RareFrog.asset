@@ -20,3 +20,4 @@ MonoBehaviour:
   rarity: 400
   minCoinsLoot: 2
   maxCoinsLoot: 10
+  type: 1
