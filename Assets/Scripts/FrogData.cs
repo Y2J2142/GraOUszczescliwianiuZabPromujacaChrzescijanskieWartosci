@@ -14,4 +14,6 @@ public class FrogData : ScriptableObject
 
     [Tooltip("im wieksze tym czesciej sie pojawia")]
     public int rarity = 100;
+    public int minCoinsLoot = 1;
+    public int maxCoinsLoot = 1;
 }

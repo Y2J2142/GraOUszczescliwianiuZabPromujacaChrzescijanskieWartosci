@@ -12,6 +12,7 @@ public class OnSceneClick : MonoBehaviour
     private GameObject currentFrog;
     private RzabaSpawner rzabkaGiver;
     private FlowerManager flowerManager;
+    private LootSpawner lootSpawner;
     private HudCounterController hudCounterController;
     private ParticleSystem frogThunder;
     private ParticleSystem puff;
@@ -22,6 +23,7 @@ public class OnSceneClick : MonoBehaviour
         this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
         ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(new Vector3(0, 0, 0)));
         this.flowerManager = new FlowerManager();
+        this.lootSpawner = GameObject.Find("LootSpawner").GetComponent<LootSpawner>();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
         this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
@@ -59,9 +61,18 @@ public class OnSceneClick : MonoBehaviour
             }
         });
 
+        this.lootSpawner.coins.ForEach(coin =>
+        {
+            if (coin.GetComponent<CoinScript>().hitsCounter())
+            {
+                this.lootSpawner.RemoveCoin(coin);
+                this.hudCounterController.Increment();
+            }
+        });
+
         if (!frogScript.IsSad())
         {
-            this.hudCounterController.Increment();
+            lootSpawner.SpawnCoins(frogScript.gameObject);
             this.frogThunder.Play();
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }

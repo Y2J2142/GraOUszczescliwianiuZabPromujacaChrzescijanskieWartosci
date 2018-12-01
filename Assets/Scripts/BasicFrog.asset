@@ -18,3 +18,5 @@ MonoBehaviour:
   kamykAnimation: {fileID: 9100000, guid: b557b96b74b7f454cb91ddf0f8d22344, type: 2}
   maximumSadnessLevel: 10
   rarity: 4000
+  minCoinsLoot: 1
+  maxCoinsLoot: 2
