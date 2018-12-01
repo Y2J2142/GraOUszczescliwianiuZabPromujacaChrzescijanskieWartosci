@@ -18,9 +18,9 @@ public class Frog : MonoBehaviour
 
     private double currentSadnessmultiplier;
 
-    private int currentSadnessLevel;
+    private float currentSadnessLevel;
     
-    public int fullSadness;
+    public float fullSadness;
 
     public double CurrentSadnessmultiplier
     {
@@ -35,7 +35,7 @@ public class Frog : MonoBehaviour
         }
     }
 
-    public int CurrentSadnessLevel 
+    public float CurrentSadnessLevel 
     {
         get { return currentSadnessLevel;}
         set { currentSadnessLevel = value;}
@@ -84,12 +84,12 @@ public class Frog : MonoBehaviour
         }
     }
 
-    public void TakeFlowers(int flowers)
+    public void TakeFlowers(float flowers)
     {
         ReceiveHapiness(flowers);
     }
 
-    private void ReceiveHapiness(int happiness)
+    private void ReceiveHapiness(float happiness)
     {
         currentSadnessLevel -= happiness;
         if (!IsSad())

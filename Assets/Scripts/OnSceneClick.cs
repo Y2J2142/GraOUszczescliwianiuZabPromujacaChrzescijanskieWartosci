@@ -16,6 +16,7 @@ public class OnSceneClick : MonoBehaviour
     private HudCounterController hudCounterController;
     private ParticleSystem frogThunder;
     private ParticleSystem puff;
+    private List<FlowerModifier> modifiers;
 
 
     void Start()
@@ -29,8 +30,9 @@ public class OnSceneClick : MonoBehaviour
         this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
         this.frogThunder = GameObject.Find("FrogThunder").GetComponent<ParticleSystem>();
         this.puff = GameObject.Find("Puff").GetComponent<ParticleSystem>();
-
+        this.modifiers = new List<FlowerModifier>();
         Screen.orientation = ScreenOrientation.Portrait;
+        modifiers.Add(new FlowerModifier(2, 10, false));
     }
 
     void OnGUI()
@@ -50,6 +52,15 @@ public class OnSceneClick : MonoBehaviour
 
     void Update()
     {
+        modifiers.ForEach(m =>
+        {
+            if(m.timer < 0)
+                modifiers.Remove(m);
+        });
+
+
+
+
         this.flowerManager.flowers.ForEach(flower =>
         {
             flower.FlyToFrog(this.frogScript.gameObject);
@@ -57,7 +68,10 @@ public class OnSceneClick : MonoBehaviour
             {
                 this.puff.Play();
                 this.flowerManager.RemoveFlower(flower);
-                this.frogScript.TakeFlowers(10);
+                float happinesToDeal = flower.Happines;
+                modifiers.ForEach( m => {happinesToDeal *= m.modifier;});
+                Debug.Log(happinesToDeal);
+                this.frogScript.TakeFlowers(happinesToDeal);
             }
         });
 
@@ -77,6 +91,15 @@ public class OnSceneClick : MonoBehaviour
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
     }
+
+    void FixedUpdate()
+    {
+        modifiers.ForEach(m => {
+            if(!m.permanent)
+                m.timer -= Time.deltaTime;
+        });
+    }
+
 
     IEnumerator Remover(GameObject frogo)
     {

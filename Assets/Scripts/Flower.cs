@@ -4,7 +4,10 @@ using UnityEngine;
 
 public class Flower {
     public GameObject gameObject {get; set; }
-	private int rotateRadius;
+    public float Happines { get; set;}
+
+    private int rotateRadius;
+	private float happines = 10;
 
 	public Flower(GameObject flower) 
 	{
