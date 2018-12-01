@@ -22,7 +22,7 @@ public class RzabaSpawner : MonoBehaviour {
 		rzabulec.transform.SetParent(GameObject.Find("Canvas").transform);
 		rzabulec.GetComponent<Frog>().frogData = GetRandomFrogType();
 		rzabulec.GetComponent<Frog>().CurrentSadnessmultiplier = currentSadnessMultiplier;
-		currentSadnessMultiplier += 0.1;
+		currentSadnessMultiplier += 0.01;
 		rzabulec.transform.position = new Vector3(0, -50, 0);
 		return rzabulec;
 	}
