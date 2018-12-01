@@ -25,6 +25,6 @@ public class CoinScript : MonoBehaviour
 
     public bool hitsCounter()
     {
-        return gameObject.transform.position.x == hudCounter.transform.position.x;
+        return gameObject.transform.position.x >= hudCounter.transform.position.x - 5;
     }
 }
