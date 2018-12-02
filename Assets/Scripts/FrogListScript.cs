@@ -5,6 +5,8 @@ using UnityEngine.UI;
 
 public class FrogListScript : MonoBehaviour
 {
+    [SerializeField]
+    private Sprite lockedFrogSprite;
     private Text titleText;
     private Transform frogsPanel;
     private GameObject frogButtonPrefab;
@@ -26,8 +28,11 @@ public class FrogListScript : MonoBehaviour
 			newButton.transform.SetParent(frogsPanel.GetComponent<GridLayoutGroup>().transform);
 			var buttonImage = newButton.transform.GetComponent<Image>();
 			newButton.transform.localScale = new Vector3( 1.0f, 1.0f, 1.0f );
-			buttonImage.sprite = frog.happySprite;
-			buttonImage.preserveAspect = true;
+            buttonImage.sprite = lockedFrogSprite;
+            if (frog.isUnlocked)
+            {
+                buttonImage.sprite = frog.happySprite;
+            }
         });
     }
 

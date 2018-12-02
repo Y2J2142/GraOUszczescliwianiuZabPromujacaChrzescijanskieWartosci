@@ -185,6 +185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e09b9498a62740e48bd613cb12cd971a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  lockedFrogSprite: {fileID: 21300000, guid: ec1c8502f3f38634d8885ee8f0731aff, type: 3}
 --- !u!222 &222106846171902182
 CanvasRenderer:
   m_ObjectHideFlags: 1
