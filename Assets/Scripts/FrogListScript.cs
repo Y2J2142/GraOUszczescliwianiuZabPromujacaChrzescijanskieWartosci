@@ -6,6 +6,8 @@ using UnityEngine.UI;
 
 public class FrogListScript : MonoBehaviour
 {
+    private event Action<FrogData> OnFrogInCollectionClicked;
+
     [SerializeField]
     private Sprite lockedFrogSprite;
     private Text titleText;
@@ -30,7 +32,7 @@ public class FrogListScript : MonoBehaviour
             var buttonImage = newButton.transform.GetComponent<Image>();
             newButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             Button button = newButton.GetComponent<Button>();
-            button.onClick.AddListener(() => OnFrogClick(frog));
+            button.onClick.AddListener(() => OnFrogClick(frog, buttonImage));
             buttonImage.sprite = lockedFrogSprite;
             if (frog.isUnlocked)
             {
@@ -39,9 +41,26 @@ public class FrogListScript : MonoBehaviour
         });
     }
 
-    private void OnFrogClick(FrogData frog)
+    public void registerOnFrogInCollectionClicked(Action<FrogData> onFrogInCollectionClicked)
+    {
+        OnFrogInCollectionClicked += onFrogInCollectionClicked;
+    }
+
+    private void OnFrogClick(FrogData frog, Image buttonImage)
     {
         Debug.Log("Kliknieta zaba: " + frog);
+        if (OnFrogInCollectionClicked != null)
+        {
+            OnFrogInCollectionClicked(frog);
+        }
+        if (frog.isUnlocked)
+        {
+            buttonImage.sprite = frog.happySprite;
+        }
+        else
+        {
+            buttonImage.sprite = lockedFrogSprite;
+        }
     }
 
     public void SetProperties(List<FrogData> frogs, string title)

@@ -26,7 +26,15 @@ public class CollectionScript : MonoBehaviour
         var normalFrogList = Instantiate(frogListPrefab, Vector3.zero, Quaternion.identity);
         normalFrogList.transform.SetParent(content.GetComponent<GridLayoutGroup>().transform);
         normalFrogList.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        normalFrogList.GetComponent<FrogListScript>().SetProperties(frogs, title);
+        var frogListScript = normalFrogList.GetComponent<FrogListScript>();
+        frogListScript.SetProperties(frogs, title);
+        frogListScript.registerOnFrogInCollectionClicked(OnFrogInCollectionClicked);
+    }
+
+    private void OnFrogInCollectionClicked(FrogData frog)
+    {
+        var clickedFrog = frogTypes[frogTypes.IndexOf(frog)];
+        clickedFrog.isUnlocked = !clickedFrog.isUnlocked;
     }
 
     public List<FrogData> GetUnlockedFrogs()
