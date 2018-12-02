@@ -25,5 +25,5 @@ MonoBehaviour:
   minCoinsLoot: 2
   maxCoinsLoot: 4
   type: 1
-  isUnlocked: 0
+  isUnlocked: 1
   frogName: "Mentalnie Zboczuch Fizycznie \u017Babol"
