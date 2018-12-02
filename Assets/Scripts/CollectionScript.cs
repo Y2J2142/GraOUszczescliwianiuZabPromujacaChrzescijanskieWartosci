@@ -6,7 +6,10 @@ using UnityEngine.UI;
 public class CollectionScript : MonoBehaviour
 {
 
-    public List<FrogData> frogTypes;
+    [SerializeField]
+    private Transform frogDetailsPanel;
+    [SerializeField]
+    private List<FrogData> frogTypes;
     private GameObject content;
     private GameObject frogListPrefab;
 
@@ -14,6 +17,7 @@ public class CollectionScript : MonoBehaviour
     {
         content = GameObject.Find("Content");
         frogListPrefab = Resources.Load<GameObject>("Prefabs/FrogList");
+        HideDetailsPanel();
 
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Normal), "Normal frogs");
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Rare), "Rare frogs");
@@ -31,10 +35,28 @@ public class CollectionScript : MonoBehaviour
         frogListScript.registerOnFrogInCollectionClicked(OnFrogInCollectionClicked);
     }
 
+    public void HideDetailsPanel()
+    {
+        frogDetailsPanel.gameObject.SetActive(false);
+    }
+
+    private void ShowDetailsPanel()
+    {
+        frogDetailsPanel.gameObject.SetActive(true);
+    }
+
     private void OnFrogInCollectionClicked(FrogData frog)
     {
         var clickedFrog = frogTypes[frogTypes.IndexOf(frog)];
-        clickedFrog.isUnlocked = true;
+        frogDetailsPanel.Find("DetailsFrogNameText").GetComponent<Text>().text = clickedFrog.frogName;
+        frogDetailsPanel.Find("DetailsFrogRarity").transform.Find("RarityValue").GetComponent<Text>().text = clickedFrog.type.ToString();
+        frogDetailsPanel.Find("DetailsFrogBaseHp").transform.Find("HpValue").GetComponent<Text>().text = clickedFrog.maximumSadnessLevel.ToString();
+        frogDetailsPanel.Find("DetailsFrogMoneyLoot").transform.Find("MoneyValue").GetComponent<Text>().text = clickedFrog.minCoinsLoot + "-" + clickedFrog.maxCoinsLoot;
+        frogDetailsPanel.Find("DetailsFrogNormalLoot").transform.Find("NormalLootValue").GetComponent<Text>().text = clickedFrog.normalLootChance + "%";
+        frogDetailsPanel.Find("DetailsFrogRareLoot").transform.Find("RareLootValue").GetComponent<Text>().text = clickedFrog.rareLootChance + "%";
+        frogDetailsPanel.Find("DetailsFrogEpicLoot").transform.Find("EpicLootValue").GetComponent<Text>().text = clickedFrog.epicLootChance + "%";
+        frogDetailsPanel.Find("DetailsFrogLegendaryLoot").transform.Find("LegendaryLootValue").GetComponent<Text>().text = clickedFrog.legendaryLootChance + "%";
+        ShowDetailsPanel();
     }
 
     public List<FrogData> GetUnlockedFrogs()

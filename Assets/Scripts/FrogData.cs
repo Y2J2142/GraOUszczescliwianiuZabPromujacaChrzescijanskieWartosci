@@ -15,8 +15,13 @@ public class FrogData : ScriptableObject
 
     [Tooltip("im wieksze tym czesciej sie pojawia")]
     public int rarity = 100;
+    public int normalLootChance = 0;
+    public int rareLootChance = 0;
+    public int epicLootChance = 0;
+    public int legendaryLootChance = 0;
     public int minCoinsLoot = 1;
     public int maxCoinsLoot = 1;
     public FrogType type = FrogType.Normal;
     public bool isUnlocked = false;
+    public string frogName;
 }

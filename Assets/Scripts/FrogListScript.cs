@@ -53,14 +53,6 @@ public class FrogListScript : MonoBehaviour
         {
             OnFrogInCollectionClicked(frog);
         }
-        if (frog.isUnlocked)
-        {
-            buttonImage.sprite = frog.happySprite;
-        }
-        else
-        {
-            buttonImage.sprite = lockedFrogSprite;
-        }
     }
 
     public void SetProperties(List<FrogData> frogs, string title)

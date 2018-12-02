@@ -18,7 +18,12 @@ MonoBehaviour:
   kamykAnimation: {fileID: 9100000, guid: b557b96b74b7f454cb91ddf0f8d22344, type: 2}
   maximumSadnessLevel: 10
   rarity: 4000
+  normalLootChance: 2
+  rareLootChance: 0
+  epicLootChance: 0
+  legendaryLootChance: 0
   minCoinsLoot: 1
   maxCoinsLoot: 2
   type: 0
   isUnlocked: 1
+  frogName: "Najzwyklejszy \u017Babol Na \u015Awiecie"

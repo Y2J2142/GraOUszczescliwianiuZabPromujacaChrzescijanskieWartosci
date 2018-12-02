@@ -18,6 +18,12 @@ MonoBehaviour:
   kamykAnimation: {fileID: 9100000, guid: 5877dd384a1e0e34c8db4ba4cf796966, type: 2}
   maximumSadnessLevel: 100
   rarity: 400
+  normalLootChance: 10
+  rareLootChance: 2
+  epicLootChance: 0
+  legendaryLootChance: 0
   minCoinsLoot: 2
   maxCoinsLoot: 10
   type: 1
+  isUnlocked: 0
+  frogName: "Zielony Szalony \u017Babol"

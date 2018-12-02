@@ -18,6 +18,12 @@ MonoBehaviour:
   kamykAnimation: {fileID: 9100000, guid: 05592126cd2b6754fb868041679515a3, type: 2}
   maximumSadnessLevel: 500
   rarity: 100
+  normalLootChance: 20
+  rareLootChance: 10
+  epicLootChance: 2
+  legendaryLootChance: 0
   minCoinsLoot: 10
   maxCoinsLoot: 50
   type: 2
+  isUnlocked: 0
+  frogName: "\u017B\xF3\u0142ty \u017Babol Pot\u0119\u017Cny"
