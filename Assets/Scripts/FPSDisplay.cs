@@ -19,6 +19,10 @@ public class FPSDisplay : MonoBehaviour
 
     void OnGUI()
     {
+        if (!MenuController.isGameActive())
+        {
+            return;
+        }
         if (!showFPS)
         {
             return;
