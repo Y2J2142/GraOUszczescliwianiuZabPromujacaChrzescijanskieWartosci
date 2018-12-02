@@ -29,6 +29,11 @@ public class CollectionScript : MonoBehaviour
         normalFrogList.GetComponent<FrogListScript>().SetProperties(frogs, title);
     }
 
+    public List<FrogData> GetUnlockedFrogs()
+    {
+        return frogTypes.FindAll(frog => frog.isUnlocked);
+    }
+
     void Update()
     {
 

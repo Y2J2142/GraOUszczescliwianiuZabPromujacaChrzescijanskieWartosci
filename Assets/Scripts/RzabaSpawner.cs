@@ -6,15 +6,14 @@ using UnityEngine.UI;
 public class RzabaSpawner : MonoBehaviour
 {
     public GameObject frogPrefab;
-
-    [SerializeField]
-    List<FrogData> frogTypes;
+    private CollectionScript collection;
 
     double currentSadnessMultiplier = 1.0;
 
     void Start()
     {
         this.frogPrefab = Resources.Load<GameObject>("Prefabs/Frog");
+        this.collection = GameObject.Find("Collection").GetComponent<CollectionScript>();
     }
 
     void Update()
@@ -34,7 +33,7 @@ public class RzabaSpawner : MonoBehaviour
 
     private FrogData GetRandomFrogType()
     {
-
+        var frogTypes = collection.GetUnlockedFrogs();
         int sum = 0;
         frogTypes.ForEach(kamulec => sum += kamulec.rarity);
         int rnd = UnityEngine.Random.Range(0, sum);
