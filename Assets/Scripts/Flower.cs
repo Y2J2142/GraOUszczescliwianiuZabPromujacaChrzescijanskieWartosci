@@ -7,7 +7,6 @@ public class Flower {
     public float Happines { get; set;}
 
     private int rotateRadius;
-	private float happines = 10;
 
 	public Flower(GameObject flower) 
 	{
