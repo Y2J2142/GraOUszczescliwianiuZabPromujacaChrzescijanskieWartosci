@@ -19,7 +19,7 @@ public class Frog : MonoBehaviour
     private double currentSadnessmultiplier;
 
     private float currentSadnessLevel;
-    
+
     public float fullSadness;
 
     public double CurrentSadnessmultiplier
@@ -35,7 +35,7 @@ public class Frog : MonoBehaviour
         }
     }
 
-    public float CurrentSadnessLevel 
+    public float CurrentSadnessLevel
     {
         get { return currentSadnessLevel; }
         set { currentSadnessLevel = value; }

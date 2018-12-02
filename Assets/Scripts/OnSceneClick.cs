@@ -63,7 +63,7 @@ public class OnSceneClick : MonoBehaviour
 
         modifiers.ForEach(m =>
         {
-            if(m.timer < 0)
+            if (m.timer < 0)
                 modifiers.Remove(m);
         });
         this.flowerManager.flowers.ForEach(flower =>
@@ -74,7 +74,7 @@ public class OnSceneClick : MonoBehaviour
                 this.puff.Play();
                 this.flowerManager.RemoveFlower(flower);
                 float happinesToDeal = flower.Happines;
-                modifiers.ForEach( m => {happinesToDeal *= m.modifier;});
+                modifiers.ForEach(m => { happinesToDeal *= m.modifier; });
                 this.frogScript.TakeFlowers(happinesToDeal);
             }
         });
@@ -98,8 +98,9 @@ public class OnSceneClick : MonoBehaviour
 
     void FixedUpdate()
     {
-        modifiers.ForEach(m => {
-            if(!m.permanent)
+        modifiers.ForEach(m =>
+        {
+            if (!m.permanent)
                 m.timer -= Time.deltaTime;
         });
     }

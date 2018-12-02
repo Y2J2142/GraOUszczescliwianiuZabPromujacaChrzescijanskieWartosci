@@ -21,7 +21,7 @@ public class LootSpawner : MonoBehaviour
 
     public void SpawnCoins(GameObject frog)
     {
-		var frogData = frog.GetComponent<Frog>().frogData;
+        var frogData = frog.GetComponent<Frog>().frogData;
         var amount = UnityEngine.Random.Range(frogData.minCoinsLoot, frogData.maxCoinsLoot);
         for (int i = 0; i < amount; i++)
         {

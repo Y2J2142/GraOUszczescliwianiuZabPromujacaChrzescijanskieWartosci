@@ -32,12 +32,12 @@ public class MenuController : MonoBehaviour
 
     public static bool isGameActive()
     {
-		return currentGameMode == GameMode.Game;
+        return currentGameMode == GameMode.Game;
     }
 
     private void NavigateTo(GameMode gameMode)
     {
-		currentGameMode = gameMode;
+        currentGameMode = gameMode;
         switch (gameMode)
         {
             case GameMode.Game:

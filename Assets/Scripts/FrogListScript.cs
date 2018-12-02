@@ -11,23 +11,23 @@ public class FrogListScript : MonoBehaviour
     private Transform frogsPanel;
     private GameObject frogButtonPrefab;
 
-	private string title;
-	private List<FrogData> frogDatas;
+    private string title;
+    private List<FrogData> frogDatas;
 
     void Start()
     {
         titleText = gameObject.transform.Find("Title").GetComponent<Text>();
         frogsPanel = gameObject.transform.Find("FrogsPanel");
-		frogButtonPrefab = Resources.Load<GameObject>("Prefabs/FrogButton");
+        frogButtonPrefab = Resources.Load<GameObject>("Prefabs/FrogButton");
 
-		titleText.text = title;
+        titleText.text = title;
 
         frogDatas.ForEach(frog =>
         {
-			var newButton = Instantiate(frogButtonPrefab, Vector3.zero, Quaternion.identity);
-			newButton.transform.SetParent(frogsPanel.GetComponent<GridLayoutGroup>().transform);
-			var buttonImage = newButton.transform.GetComponent<Image>();
-			newButton.transform.localScale = new Vector3( 1.0f, 1.0f, 1.0f );
+            var newButton = Instantiate(frogButtonPrefab, Vector3.zero, Quaternion.identity);
+            newButton.transform.SetParent(frogsPanel.GetComponent<GridLayoutGroup>().transform);
+            var buttonImage = newButton.transform.GetComponent<Image>();
+            newButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
             buttonImage.sprite = lockedFrogSprite;
             if (frog.isUnlocked)
             {
@@ -38,8 +38,8 @@ public class FrogListScript : MonoBehaviour
 
     public void SetProperties(List<FrogData> frogs, string title)
     {
-		this.frogDatas = frogs;
-		this.title = title;
+        this.frogDatas = frogs;
+        this.title = title;
     }
 
     void Update()
