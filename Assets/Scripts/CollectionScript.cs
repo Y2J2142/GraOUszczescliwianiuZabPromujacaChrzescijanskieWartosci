@@ -26,7 +26,7 @@ public class CollectionScript : MonoBehaviour
         var normalFrogList = Instantiate(frogListPrefab, Vector3.zero, Quaternion.identity);
         normalFrogList.transform.SetParent(content.GetComponent<GridLayoutGroup>().transform);
         normalFrogList.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        normalFrogList.GetComponent<FrogListScript>().SetProperties(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Normal), "Normal frogs");
+        normalFrogList.GetComponent<FrogListScript>().SetProperties(frogs, title);
     }
 
     void Update()
