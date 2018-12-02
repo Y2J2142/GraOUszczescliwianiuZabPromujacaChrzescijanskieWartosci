@@ -20,3 +20,5 @@ MonoBehaviour:
   rarity: 4000
   minCoinsLoot: 1
   maxCoinsLoot: 2
+  type: 0
+  isUnlocked: 1
