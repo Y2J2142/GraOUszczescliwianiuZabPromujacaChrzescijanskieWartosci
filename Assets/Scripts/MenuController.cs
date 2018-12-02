@@ -4,20 +4,25 @@ using UnityEngine;
 
 public class MenuController : MonoBehaviour
 {
-    public enum GameMode { Game, Collection }
+    public enum GameMode { Game, Collection, Shop }
 
     private Vector3 desiredMenuPosition;
     public RectTransform menuContainer;
     public static GameMode currentGameMode = GameMode.Game;
+    private TrzepaczHajsu trzepacz;
+
+    private double timer;
 
     void Start()
-    {
-
+    {        
+        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
+        timer = 600.0f;
     }
 
     void Update()
     {
         menuContainer.anchoredPosition3D = Vector3.Lerp(menuContainer.anchoredPosition3D, desiredMenuPosition, 0.1f);
+        timer -= Time.deltaTime;
     }
 
     public void OnGoToCollectionClick()
@@ -25,6 +30,18 @@ public class MenuController : MonoBehaviour
         NavigateTo(GameMode.Collection);
     }
 
+    public void OnGoToShopClick()
+    {
+        NavigateTo(GameMode.Shop);
+    }
+	public void onShowAdButtonClick()
+	{
+        if(trzepacz.rewarder != null && timer <= 0)
+        {
+		    trzepacz.ShowAd();
+            timer = 600.0f;
+        }
+	}
     public void OnBackClick()
     {
         NavigateTo(GameMode.Game);
@@ -45,6 +62,9 @@ public class MenuController : MonoBehaviour
                 break;
             case GameMode.Collection:
                 desiredMenuPosition = Vector3.left * 1920;
+                break;
+            case GameMode.Shop:
+                desiredMenuPosition = Vector3.right * 1920;
                 break;
         }
     }

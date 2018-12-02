@@ -37,7 +37,7 @@ public class OnSceneClick : MonoBehaviour
         this.puff = GameObject.Find("Puff").GetComponent<ParticleSystem>();
         this.modifiers = new List<FlowerModifier>();
         Screen.orientation = ScreenOrientation.Portrait;
-        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
+        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();        
         this.trzepacz.rewarder = delegate(){
             modifiers.Add(new FlowerModifier(2, 60, false));
         };
@@ -106,7 +106,6 @@ public class OnSceneClick : MonoBehaviour
             this.frogThunder.Play();
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
-        trzepacz.ShowAd();
     
     }
 

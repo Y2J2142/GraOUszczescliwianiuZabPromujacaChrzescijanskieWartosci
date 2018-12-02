@@ -16,7 +16,6 @@ public class TrzepaczHajsu : MonoBehaviour {
 	}
 
     public void ShowAd () {
-		if(Random.Range(0,10001) == 0)
         	StartCoroutine (WaitForAd ());
     }
 
