@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753e53939fd20ac42b872e1cd1fca4cf, type: 3}
+  m_Name: RareDigletFrog
+  m_EditorClassIdentifier: 
+  sadSprite: {fileID: 21300002, guid: beb8e4010d1119e41bf545f4f4fa5e25, type: 3}
+  happySprite: {fileID: 21300000, guid: beb8e4010d1119e41bf545f4f4fa5e25, type: 3}
+  headgearSprite: {fileID: 0}
+  outfitSprite: {fileID: 0}
+  kamykAnimation: {fileID: 9100000, guid: 9f22dda08ab01044ab13b41bf324c3d9, type: 2}
+  maximumSadnessLevel: 200
+  rarity: 300
+  normalLootChance: 40
+  rareLootChance: 20
+  epicLootChance: 10
+  legendaryLootChance: 0
+  minCoinsLoot: 2
+  maxCoinsLoot: 4
+  type: 1
+  isUnlocked: 0
+  frogName: "Mentalnie Zboczuch Fizycznie \u017Babol"
