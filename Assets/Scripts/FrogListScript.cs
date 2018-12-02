@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -28,12 +29,19 @@ public class FrogListScript : MonoBehaviour
             newButton.transform.SetParent(frogsPanel.GetComponent<GridLayoutGroup>().transform);
             var buttonImage = newButton.transform.GetComponent<Image>();
             newButton.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+            Button button = newButton.GetComponent<Button>();
+            button.onClick.AddListener(() => OnFrogClick(frog));
             buttonImage.sprite = lockedFrogSprite;
             if (frog.isUnlocked)
             {
                 buttonImage.sprite = frog.happySprite;
             }
         });
+    }
+
+    private void OnFrogClick(FrogData frog)
+    {
+        Debug.Log("Kliknieta zaba: " + frog);
     }
 
     public void SetProperties(List<FrogData> frogs, string title)
