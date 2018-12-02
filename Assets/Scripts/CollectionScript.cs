@@ -34,7 +34,7 @@ public class CollectionScript : MonoBehaviour
     private void OnFrogInCollectionClicked(FrogData frog)
     {
         var clickedFrog = frogTypes[frogTypes.IndexOf(frog)];
-        clickedFrog.isUnlocked = !clickedFrog.isUnlocked;
+        clickedFrog.isUnlocked = true;
     }
 
     public List<FrogData> GetUnlockedFrogs()
