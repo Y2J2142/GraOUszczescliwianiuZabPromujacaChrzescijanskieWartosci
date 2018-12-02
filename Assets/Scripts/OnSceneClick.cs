@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Monetization;
+using UnityEngine.Advertisements;
 
 
 public class OnSceneClick : MonoBehaviour
@@ -17,10 +19,13 @@ public class OnSceneClick : MonoBehaviour
     private ParticleSystem frogThunder;
     private ParticleSystem puff;
     private List<FlowerModifier> modifiers;
+    
+    private  TrzepaczHajsu trzepacz;
 
 
     void Start()
     {
+        Monetization.Initialize("2943700", true);
         this.rzabkaGiver = GameObject.Find("RzabaSpawner").GetComponent<RzabaSpawner>();
         ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(new Vector3(0, 0, 0)));
         this.flowerManager = new FlowerManager();
@@ -32,7 +37,12 @@ public class OnSceneClick : MonoBehaviour
         this.puff = GameObject.Find("Puff").GetComponent<ParticleSystem>();
         this.modifiers = new List<FlowerModifier>();
         Screen.orientation = ScreenOrientation.Portrait;
-        modifiers.Add(new FlowerModifier(2, 10, false));
+        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
+        this.trzepacz.rewarder = delegate(){
+            modifiers.Add(new FlowerModifier(2, 60, false));
+        };
+
+
     }
 
     void OnGUI()
@@ -52,6 +62,7 @@ public class OnSceneClick : MonoBehaviour
         float width = (float)frogScript.CurrentSadnessLevel * 100.0f / (float)frogScript.fullSadness;
         width /= 100.0f;
         GUI.Box(new Rect(0, frogScript.transform.position.y, Screen.width * width, 100), GUIContent.none);
+
     }
 
     void Update()
@@ -75,6 +86,7 @@ public class OnSceneClick : MonoBehaviour
                 this.flowerManager.RemoveFlower(flower);
                 float happinesToDeal = flower.Happines;
                 modifiers.ForEach(m => { happinesToDeal *= m.modifier; });
+                Debug.Log(happinesToDeal);
                 this.frogScript.TakeFlowers(happinesToDeal);
             }
         });
@@ -94,6 +106,8 @@ public class OnSceneClick : MonoBehaviour
             this.frogThunder.Play();
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
+        trzepacz.ShowAd();
+    
     }
 
     void FixedUpdate()
