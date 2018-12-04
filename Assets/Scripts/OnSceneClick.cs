@@ -15,13 +15,13 @@ public class OnSceneClick : MonoBehaviour
     private RzabaSpawner rzabkaGiver;
     private FlowerManager flowerManager;
     private LootSpawner lootSpawner;
-    private HudCounterController hudCounterController;
     private List<FlowerModifier> modifiers;
 
     private TrzepaczHajsu trzepacz;
     private Transform wybuch;
     private Transform dymek;
     private GameObject goToCollectionButton;
+    private PlayerResourcesScript playerResourcesScript;
 
     void Start()
     {
@@ -32,7 +32,6 @@ public class OnSceneClick : MonoBehaviour
         this.lootSpawner = GameObject.Find("LootSpawner").GetComponent<LootSpawner>();
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
-        this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
         this.modifiers = new List<FlowerModifier>();
         Screen.orientation = ScreenOrientation.Portrait;
         this.wybuch = GameObject.Find("Wybuch").transform.Find("Explosion");
@@ -45,8 +44,7 @@ public class OnSceneClick : MonoBehaviour
         {
             modifiers.Add(new FlowerModifier(2, 60, false));
         };
-
-
+        this.playerResourcesScript = GameObject.Find("PlayerResources").GetComponent<PlayerResourcesScript>();
     }
 
     void OnGUI()
@@ -100,15 +98,17 @@ public class OnSceneClick : MonoBehaviour
         {
             if (coin.GetComponent<CoinScript>().hitsCounter())
             {
+                this.playerResourcesScript.IncrementCurrentCoinsNumber();
                 this.lootSpawner.RemoveCoin(coin);
-                this.hudCounterController.Increment();
             }
         });
 
         this.lootSpawner.gems.ForEach(gem =>
         {
-            if (gem.GetComponent<GemScript>().hitsDestination())
+            GemScript gemScript = gem.GetComponent<GemScript>();
+            if (gemScript.hitsDestination())
             {
+                this.playerResourcesScript.IncrementCurrentGemsNumber(gemScript.GetGemType());
                 this.goToCollectionButton.GetComponent<HighlightableObjectScript>().setHighlightSprite(true);
                 this.lootSpawner.RemoveGem(gem);
             }

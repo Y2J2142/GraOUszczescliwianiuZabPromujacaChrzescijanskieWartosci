@@ -51,6 +51,11 @@ public class GemScript : MonoBehaviour
         FlyToDestination();
     }
 
+    public GemType GetGemType()
+    {
+        return this.type;
+    }
+
     public void SetType(GemType type)
     {
         this.type = type;

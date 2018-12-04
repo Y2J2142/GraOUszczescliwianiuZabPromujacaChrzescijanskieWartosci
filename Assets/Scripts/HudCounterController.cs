@@ -12,6 +12,12 @@ public class HudCounterController : MonoBehaviour
     void Start()
     {
         this.HudCounter = gameObject.GetComponent<Text>();
+        PlayerResourcesScript.OnCurrentCoinsNumberChange += OnCurrentCoinsNumberChange;
+    }
+
+    void Destroy()
+    {
+        PlayerResourcesScript.OnCurrentCoinsNumberChange -= OnCurrentCoinsNumberChange;
     }
 
     void Update()
@@ -19,8 +25,8 @@ public class HudCounterController : MonoBehaviour
 
     }
 
-    internal void Increment()
+    void OnCurrentCoinsNumberChange(int coinsNumber)
     {
-        this.HudCounter.text = (Convert.ToInt32(this.HudCounter.text) + 1).ToString();
+        this.HudCounter.text = coinsNumber.ToString();
     }
 }
