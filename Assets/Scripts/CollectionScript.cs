@@ -22,6 +22,7 @@ public class CollectionScript : MonoBehaviour
     [SerializeField]
     private Sprite legendaryGemSprite;
     private PlayerResourcesScript playerResources;
+    private List<GameObject> frogLists;
 
     void Start()
     {
@@ -29,7 +30,8 @@ public class CollectionScript : MonoBehaviour
         frogListPrefab = Resources.Load<GameObject>("Prefabs/FrogList");
         HideDetailsPanel();
 
-        InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Normal), "Normal fgs");
+        frogLists = new List<GameObject>();
+        InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Normal), "Normal frogs");
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Rare), "Rare frogs");
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Epic), "Epic frogs");
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Legendary), "Legendary frogs");
@@ -37,14 +39,20 @@ public class CollectionScript : MonoBehaviour
         playerResources = GameObject.Find("PlayerResources").GetComponent<PlayerResourcesScript>();
     }
 
+    private void RefreshListsSprites()
+    {
+        frogLists.ForEach(list => list.GetComponent<FrogListScript>().RefreshButtonSprites());
+    }
+
     private void InstantiateFrogList(List<FrogData> frogs, string title)
     {
-        var normalFrogList = Instantiate(frogListPrefab, Vector3.zero, Quaternion.identity);
-        normalFrogList.transform.SetParent(content.GetComponent<GridLayoutGroup>().transform);
-        normalFrogList.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
-        var frogListScript = normalFrogList.GetComponent<FrogListScript>();
+        var frogList = Instantiate(frogListPrefab, Vector3.zero, Quaternion.identity);
+        frogList.transform.SetParent(content.GetComponent<GridLayoutGroup>().transform);
+        frogList.transform.localScale = new Vector3(1.0f, 1.0f, 1.0f);
+        var frogListScript = frogList.GetComponent<FrogListScript>();
         frogListScript.SetProperties(frogs, title);
         frogListScript.registerOnFrogInCollectionClicked(OnFrogInCollectionClicked);
+        frogLists.Add(frogList);
     }
 
     public void HideDetailsPanel()
@@ -69,8 +77,11 @@ public class CollectionScript : MonoBehaviour
         frogDetailsPanel.Find("DetailsFrogEpicLoot").transform.Find("EpicLootValue").GetComponent<Text>().text = clickedFrog.epicLootChance + "%";
         frogDetailsPanel.Find("DetailsFrogLegendaryLoot").transform.Find("LegendaryLootValue").GetComponent<Text>().text = clickedFrog.legendaryLootChance + "%";
         var buyFrogButton = frogDetailsPanel.Find("BuyFrogButton");
+        buyFrogButton.transform.Find("BuyText").GetComponent<Text>().text = "Buy";
         buyFrogButton.transform.Find("PriceText").GetComponent<Text>().text = clickedFrog.price.ToString();
         buyFrogButton.transform.Find("PriceGemImage").GetComponent<Image>().sprite = GetSpriteForGemType(clickedFrog.type);
+        buyFrogButton.GetComponent<Button>().onClick.RemoveAllListeners();
+        buyFrogButton.GetComponent<Button>().onClick.AddListener(() => UnlockFrog(clickedFrog));
         if (playerResources.getCurrentGemsNumber(CollectionScript.frogTypeToGemType(clickedFrog.type)) < clickedFrog.price)
         {
             buyFrogButton.GetComponent<Button>().enabled = false;
@@ -79,7 +90,26 @@ public class CollectionScript : MonoBehaviour
         {
             buyFrogButton.GetComponent<Button>().enabled = true;
         }
+        if(clickedFrog.isUnlocked){
+            SetUnlockedFrogButton();
+        }
         ShowDetailsPanel();
+    }
+
+    private void UnlockFrog(FrogData clickedFrog)
+    {
+        clickedFrog.isUnlocked = true;
+        playerResources.SubtractFromCurrentGemsNumber(clickedFrog.price, CollectionScript.frogTypeToGemType(clickedFrog.type));
+        SetUnlockedFrogButton();
+        RefreshListsSprites();
+    }
+
+    private void SetUnlockedFrogButton()
+    {
+        var buyFrogButton = frogDetailsPanel.Find("BuyFrogButton");
+        buyFrogButton.GetComponent<Button>().enabled = false;
+        buyFrogButton.transform.Find("PriceText").GetComponent<Text>().text = "UNLOCKED";
+        buyFrogButton.transform.Find("BuyText").GetComponent<Text>().text = "";
     }
 
     private Sprite GetSpriteForGemType(FrogData.FrogType type)
@@ -108,7 +138,6 @@ public class CollectionScript : MonoBehaviour
     {
 
     }
-
 
     public static GemScript.GemType frogTypeToGemType(FrogData.FrogType frogType)
     {

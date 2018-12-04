@@ -26,5 +26,5 @@ MonoBehaviour:
   maxCoinsLoot: 10
   type: 1
   price: 20
-  isUnlocked: 1
+  isUnlocked: 0
   frogName: "Zielony Szalony \u017Babol"

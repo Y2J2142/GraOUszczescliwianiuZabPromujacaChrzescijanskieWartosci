@@ -78,6 +78,41 @@ public class PlayerResourcesScript : MonoBehaviour
         }
     }
 
+    public void SubtractFromCurrentGemsNumber(int amount, GemScript.GemType type)
+    {
+        switch (type)
+        {
+            case GemScript.GemType.Normal:
+                currentNormalGemsNumber -= amount;
+                if (OnCurrentGemsNumberChange != null)
+                {
+                    OnCurrentGemsNumberChange(currentNormalGemsNumber, type);
+                }
+                break;
+            case GemScript.GemType.Rare:
+                currentRareGemsNumber -= amount;
+                if (OnCurrentGemsNumberChange != null)
+                {
+                    OnCurrentGemsNumberChange(currentRareGemsNumber, type);
+                }
+                break;
+            case GemScript.GemType.Epic:
+                currentEpicGemsNumber -= amount;
+                if (OnCurrentGemsNumberChange != null)
+                {
+                    OnCurrentGemsNumberChange(currentEpicGemsNumber, type);
+                }
+                break;
+            case GemScript.GemType.Legendary:
+                currentLegendaryGemsNumber -= amount;
+                if (OnCurrentGemsNumberChange != null)
+                {
+                    OnCurrentGemsNumberChange(currentLegendaryGemsNumber, type);
+                }
+                break;
+        }
+    }
+
     public int getCurrentGemsNumber(GemScript.GemType gemType)
     {
         switch (gemType)

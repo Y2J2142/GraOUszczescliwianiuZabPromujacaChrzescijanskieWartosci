@@ -25,5 +25,6 @@ MonoBehaviour:
   minCoinsLoot: 0
   maxCoinsLoot: 1
   type: 0
-  isUnlocked: 1
+  price: 20
+  isUnlocked: 0
   frogName: "Wydaje Ci Si\u0119 \u017Be Diglet A To \u017Babol"

@@ -16,9 +16,11 @@ public class FrogListScript : MonoBehaviour
 
     private string title;
     private List<FrogData> frogDatas;
+    private List<GameObject> buttons;
 
     void Start()
     {
+        buttons = new List<GameObject>();
         titleText = gameObject.transform.Find("Title").GetComponent<Text>();
         frogsPanel = gameObject.transform.Find("FrogsPanel");
         frogButtonPrefab = Resources.Load<GameObject>("Prefabs/FrogButton");
@@ -38,7 +40,22 @@ public class FrogListScript : MonoBehaviour
             {
                 buttonImage.sprite = frog.happySprite;
             }
+            buttons.Add(newButton);
         });
+    }
+
+    public void RefreshButtonSprites()
+    {
+        for (int i = 0; i < buttons.Count; i++)
+        {
+            var buttonImage = buttons[i].GetComponent<Image>();
+            var frog = frogDatas[i];
+            buttonImage.sprite = lockedFrogSprite;
+            if (frog.isUnlocked)
+            {
+                buttonImage.sprite = frog.happySprite;
+            }
+        }
     }
 
     public void registerOnFrogInCollectionClicked(Action<FrogData> onFrogInCollectionClicked)
