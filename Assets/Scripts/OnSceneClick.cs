@@ -16,12 +16,11 @@ public class OnSceneClick : MonoBehaviour
     private FlowerManager flowerManager;
     private LootSpawner lootSpawner;
     private HudCounterController hudCounterController;
-    private ParticleSystem frogThunder;
-    private ParticleSystem puff;
     private List<FlowerModifier> modifiers;
     
     private  TrzepaczHajsu trzepacz;
-
+    private Transform wybuch;
+    private Transform dymek;
 
     void Start()
     {
@@ -33,11 +32,13 @@ public class OnSceneClick : MonoBehaviour
         this.happyFrogs = new List<GameObject>();
         this.currentFrog = GameObject.Find("Frog");
         this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
-        this.frogThunder = GameObject.Find("FrogThunder").GetComponent<ParticleSystem>();
-        this.puff = GameObject.Find("Puff").GetComponent<ParticleSystem>();
         this.modifiers = new List<FlowerModifier>();
         Screen.orientation = ScreenOrientation.Portrait;
-        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();        
+        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
+        this.wybuch = GameObject.Find("Wybuch").transform.Find("Explosion");
+        this.wybuch.gameObject.SetActive(false);
+        this.dymek = GameObject.Find("Dymek").transform.Find("Smoke");
+        this.dymek.gameObject.SetActive(false);
         this.trzepacz.rewarder = delegate(){
             modifiers.Add(new FlowerModifier(2, 60, false));
         };
@@ -82,7 +83,8 @@ public class OnSceneClick : MonoBehaviour
             flower.FlyToFrog(this.frogScript.gameObject);
             if (flower.hitsFrog(this.frogScript.gameObject))
             {
-                this.puff.Play();
+                this.dymek.gameObject.SetActive(true);
+                this.dymek.GetComponent<Animator>().Play(0);
                 this.flowerManager.RemoveFlower(flower);
                 float happinesToDeal = flower.Happines;
                 modifiers.ForEach(m => { happinesToDeal *= m.modifier; });
@@ -103,7 +105,8 @@ public class OnSceneClick : MonoBehaviour
         if (!frogScript.IsSad())
         {
             lootSpawner.SpawnCoins(frogScript.gameObject);
-            this.frogThunder.Play();
+            this.wybuch.gameObject.SetActive(true);
+            this.wybuch.GetComponent<Animator>().Play(0);
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
     
