@@ -1362,6 +1362,7 @@ GameObject:
   - component: {fileID: 360667540}
   - component: {fileID: 360667539}
   - component: {fileID: 360667538}
+  - component: {fileID: 360667541}
   m_Layer: 0
   m_Name: GoToCollectionButton
   m_TagString: Untagged
@@ -1473,6 +1474,19 @@ CanvasRenderer:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 360667536}
   m_CullTransparentMesh: 0
+--- !u!114 &360667541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 360667536}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8876a43b03f4ba0449cff4a10a54863c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  normalSprite: {fileID: 21300000, guid: 612644afafd3d5346b6c976091fbf008, type: 3}
+  highlightSprite: {fileID: 21300000, guid: c4dd9b96f67e1534dbd13d9f482ef4a9, type: 3}
 --- !u!1 &388697846
 GameObject:
   m_ObjectHideFlags: 0

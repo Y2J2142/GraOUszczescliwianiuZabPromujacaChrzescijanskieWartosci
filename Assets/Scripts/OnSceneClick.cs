@@ -21,6 +21,7 @@ public class OnSceneClick : MonoBehaviour
     private TrzepaczHajsu trzepacz;
     private Transform wybuch;
     private Transform dymek;
+    private GameObject goToCollectionButton;
 
     void Start()
     {
@@ -34,11 +35,12 @@ public class OnSceneClick : MonoBehaviour
         this.hudCounterController = GameObject.Find("HudCounter").GetComponent<HudCounterController>();
         this.modifiers = new List<FlowerModifier>();
         Screen.orientation = ScreenOrientation.Portrait;
-        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
         this.wybuch = GameObject.Find("Wybuch").transform.Find("Explosion");
         this.wybuch.gameObject.SetActive(false);
         this.dymek = GameObject.Find("Dymek").transform.Find("Smoke");
         this.dymek.gameObject.SetActive(false);
+        this.goToCollectionButton = GameObject.Find("GoToCollectionButton");
+        this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
         this.trzepacz.rewarder = delegate ()
         {
             modifiers.Add(new FlowerModifier(2, 60, false));
@@ -107,6 +109,7 @@ public class OnSceneClick : MonoBehaviour
         {
             if (gem.GetComponent<GemScript>().hitsDestination())
             {
+                this.goToCollectionButton.GetComponent<HighlightableObjectScript>().setHighlightSprite(true);
                 this.lootSpawner.RemoveGem(gem);
             }
         });

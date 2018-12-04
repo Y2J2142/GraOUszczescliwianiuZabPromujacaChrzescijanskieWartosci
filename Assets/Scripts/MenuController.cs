@@ -10,12 +10,14 @@ public class MenuController : MonoBehaviour
     public RectTransform menuContainer;
     public static GameMode currentGameMode = GameMode.Game;
     private TrzepaczHajsu trzepacz;
+    private GameObject goToCollectionButton;
 
     private double timer;
 
     void Start()
-    {        
+    {
         this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
+        this.goToCollectionButton = GameObject.Find("GoToCollectionButton");
         timer = 600.0f;
     }
 
@@ -27,6 +29,7 @@ public class MenuController : MonoBehaviour
 
     public void OnGoToCollectionClick()
     {
+        goToCollectionButton.GetComponent<HighlightableObjectScript>().setHighlightSprite(false);
         NavigateTo(GameMode.Collection);
     }
 
@@ -34,14 +37,14 @@ public class MenuController : MonoBehaviour
     {
         NavigateTo(GameMode.Shop);
     }
-	public void onShowAdButtonClick()
-	{
-        if(trzepacz.rewarder != null && timer <= 0)
+    public void onShowAdButtonClick()
+    {
+        if (trzepacz.rewarder != null && timer <= 0)
         {
-		    trzepacz.ShowAd();
+            trzepacz.ShowAd();
             timer = 600.0f;
         }
-	}
+    }
     public void OnBackClick()
     {
         NavigateTo(GameMode.Game);
