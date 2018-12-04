@@ -17,8 +17,8 @@ public class OnSceneClick : MonoBehaviour
     private LootSpawner lootSpawner;
     private HudCounterController hudCounterController;
     private List<FlowerModifier> modifiers;
-    
-    private  TrzepaczHajsu trzepacz;
+
+    private TrzepaczHajsu trzepacz;
     private Transform wybuch;
     private Transform dymek;
 
@@ -39,7 +39,8 @@ public class OnSceneClick : MonoBehaviour
         this.wybuch.gameObject.SetActive(false);
         this.dymek = GameObject.Find("Dymek").transform.Find("Smoke");
         this.dymek.gameObject.SetActive(false);
-        this.trzepacz.rewarder = delegate(){
+        this.trzepacz.rewarder = delegate ()
+        {
             modifiers.Add(new FlowerModifier(2, 60, false));
         };
 
@@ -102,14 +103,23 @@ public class OnSceneClick : MonoBehaviour
             }
         });
 
+        this.lootSpawner.gems.ForEach(gem =>
+        {
+            if (gem.GetComponent<GemScript>().hitsCounter())
+            {
+                this.lootSpawner.RemoveGem(gem);
+            }
+        });
+
         if (!frogScript.IsSad())
         {
             lootSpawner.SpawnCoins(frogScript.gameObject);
+            lootSpawner.SpawnGems(frogScript.gameObject);
             this.wybuch.gameObject.SetActive(true);
             this.wybuch.GetComponent<Animator>().Play(0);
             ZaboPodmieniarka(rzabkaGiver.ProszemDacRzabke(this.frogScript.transform.position));
         }
-    
+
     }
 
     void FixedUpdate()
