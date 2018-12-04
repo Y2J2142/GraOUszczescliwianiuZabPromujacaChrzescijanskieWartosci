@@ -46,7 +46,7 @@ public class LootSpawner : MonoBehaviour
     private void SpawnGem(int lootChance, GemScript.GemType gemType, Vector3 frogPosition)
     {
         var rand = UnityEngine.Random.Range(0, 101);
-        if (rand <= lootChance)
+        if (rand < lootChance)
         {
             var spawnedGem = Instantiate(gemPrefab, frogPosition + Random.insideUnitSphere * 200, Quaternion.identity);
             spawnedGem.transform.SetParent(GameObject.Find("Game").transform);
