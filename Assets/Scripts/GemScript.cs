@@ -61,8 +61,8 @@ public class GemScript : MonoBehaviour
         gameObject.transform.position = Vector3.MoveTowards(gameObject.transform.position, destination.transform.position, 15);
     }
 
-    public bool hitsCounter()
+    public bool hitsDestination()
     {
-        return gameObject.transform.position.x >= destination.transform.position.x + 5;
+        return gameObject.transform.position.x >= destination.transform.position.x - 5;
     }
 }

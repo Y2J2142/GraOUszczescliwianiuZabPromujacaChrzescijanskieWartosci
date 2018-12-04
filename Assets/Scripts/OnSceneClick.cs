@@ -105,7 +105,7 @@ public class OnSceneClick : MonoBehaviour
 
         this.lootSpawner.gems.ForEach(gem =>
         {
-            if (gem.GetComponent<GemScript>().hitsCounter())
+            if (gem.GetComponent<GemScript>().hitsDestination())
             {
                 this.lootSpawner.RemoveGem(gem);
             }

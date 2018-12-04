@@ -64,6 +64,6 @@ public class LootSpawner : MonoBehaviour
     public bool RemoveGem(GameObject gem)
     {
         GameObject.Destroy(gem.gameObject, 0);
-        return this.coins.Remove(gem.gameObject);
+        return this.gems.Remove(gem.gameObject);
     }
 }
