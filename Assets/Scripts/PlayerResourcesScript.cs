@@ -78,6 +78,20 @@ public class PlayerResourcesScript : MonoBehaviour
         }
     }
 
-
-
+    public int getCurrentGemsNumber(GemScript.GemType gemType)
+    {
+        switch (gemType)
+        {
+            case GemScript.GemType.Normal:
+                return currentNormalGemsNumber;
+            case GemScript.GemType.Rare:
+                return currentRareGemsNumber;
+            case GemScript.GemType.Epic:
+                return currentEpicGemsNumber;
+            case GemScript.GemType.Legendary:
+                return currentLegendaryGemsNumber;
+            default:
+                return 0;
+        }
+    }
 }

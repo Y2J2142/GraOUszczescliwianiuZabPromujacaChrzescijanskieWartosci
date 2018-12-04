@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
@@ -12,6 +13,15 @@ public class CollectionScript : MonoBehaviour
     private List<FrogData> frogTypes;
     private GameObject content;
     private GameObject frogListPrefab;
+    [SerializeField]
+    private Sprite normalGemSprite;
+    [SerializeField]
+    private Sprite rareGemSprite;
+    [SerializeField]
+    private Sprite epicGemSprite;
+    [SerializeField]
+    private Sprite legendaryGemSprite;
+    private PlayerResourcesScript playerResources;
 
     void Start()
     {
@@ -23,6 +33,8 @@ public class CollectionScript : MonoBehaviour
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Rare), "Rare frogs");
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Epic), "Epic frogs");
         InstantiateFrogList(frogTypes.FindAll(frog => frog.type == FrogData.FrogType.Legendary), "Legendary frogs");
+
+        playerResources = GameObject.Find("PlayerResources").GetComponent<PlayerResourcesScript>();
     }
 
     private void InstantiateFrogList(List<FrogData> frogs, string title)
@@ -56,7 +68,35 @@ public class CollectionScript : MonoBehaviour
         frogDetailsPanel.Find("DetailsFrogRareLoot").transform.Find("RareLootValue").GetComponent<Text>().text = clickedFrog.rareLootChance + "%";
         frogDetailsPanel.Find("DetailsFrogEpicLoot").transform.Find("EpicLootValue").GetComponent<Text>().text = clickedFrog.epicLootChance + "%";
         frogDetailsPanel.Find("DetailsFrogLegendaryLoot").transform.Find("LegendaryLootValue").GetComponent<Text>().text = clickedFrog.legendaryLootChance + "%";
+        var buyFrogButton = frogDetailsPanel.Find("BuyFrogButton");
+        buyFrogButton.transform.Find("PriceText").GetComponent<Text>().text = clickedFrog.price.ToString();
+        buyFrogButton.transform.Find("PriceGemImage").GetComponent<Image>().sprite = GetSpriteForGemType(clickedFrog.type);
+        if (playerResources.getCurrentGemsNumber(CollectionScript.frogTypeToGemType(clickedFrog.type)) < clickedFrog.price)
+        {
+            buyFrogButton.GetComponent<Button>().enabled = false;
+        }
+        else
+        {
+            buyFrogButton.GetComponent<Button>().enabled = true;
+        }
         ShowDetailsPanel();
+    }
+
+    private Sprite GetSpriteForGemType(FrogData.FrogType type)
+    {
+        switch (type)
+        {
+            case FrogData.FrogType.Normal:
+                return normalGemSprite;
+            case FrogData.FrogType.Rare:
+                return rareGemSprite;
+            case FrogData.FrogType.Epic:
+                return epicGemSprite;
+            case FrogData.FrogType.Legendary:
+                return legendaryGemSprite;
+            default:
+                return normalGemSprite;
+        }
     }
 
     public List<FrogData> GetUnlockedFrogs()
@@ -67,5 +107,23 @@ public class CollectionScript : MonoBehaviour
     void Update()
     {
 
+    }
+
+
+    public static GemScript.GemType frogTypeToGemType(FrogData.FrogType frogType)
+    {
+        switch (frogType)
+        {
+            case FrogData.FrogType.Normal:
+                return GemScript.GemType.Normal;
+            case FrogData.FrogType.Rare:
+                return GemScript.GemType.Rare;
+            case FrogData.FrogType.Epic:
+                return GemScript.GemType.Epic;
+            case FrogData.FrogType.Legendary:
+                return GemScript.GemType.Legendary;
+            default:
+                return GemScript.GemType.Normal;
+        }
     }
 }
