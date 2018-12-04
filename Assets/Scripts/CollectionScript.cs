@@ -15,7 +15,7 @@ public class CollectionScript : MonoBehaviour
 
     void Start()
     {
-        content = GameObject.Find("Content");
+        content = GameObject.Find("ShopContent");
         frogListPrefab = Resources.Load<GameObject>("Prefabs/FrogList");
         HideDetailsPanel();
 
