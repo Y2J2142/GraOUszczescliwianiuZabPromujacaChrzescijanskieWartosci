@@ -7,7 +7,7 @@ public class TrzepaczHajsu : MonoBehaviour {
 
     public string placementId = "rewardedVideo";
 
-	public delegate void Rewarder();
+	public delegate void Rewarder(bool p);
 
 	public Rewarder rewarder = null;
 	void Start()
@@ -37,7 +37,7 @@ public class TrzepaczHajsu : MonoBehaviour {
 
     void AdFinished (UnityEngine.Monetization.ShowResult result) {
         if (result == UnityEngine.Monetization.ShowResult.Finished && rewarder != null) {
-			rewarder();
+			rewarder(false);
         }
     }
 }

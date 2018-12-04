@@ -14,6 +14,8 @@ public class PlayerResourcesScript : MonoBehaviour
     private int currentEpicGemsNumber;
     private int currentLegendaryGemsNumber;
 
+    public int CurrentCoinsNumber { get; set; }
+
     void Start()
     {
 
@@ -26,10 +28,18 @@ public class PlayerResourcesScript : MonoBehaviour
 
     public void IncrementCurrentCoinsNumber()
     {
-        currentCoinsNumber++;
+        CurrentCoinsNumber++;
         if (OnCurrentCoinsNumberChange != null)
         {
-            OnCurrentCoinsNumberChange(currentCoinsNumber);
+            OnCurrentCoinsNumberChange(CurrentCoinsNumber);
+        }
+    }
+    public void DecrementCurrentCoinNumber(int dec)
+    {
+        CurrentCoinsNumber-=  dec;
+        if (OnCurrentCoinsNumberChange != null)
+        {
+            OnCurrentCoinsNumberChange(CurrentCoinsNumber);
         }
     }
 
@@ -67,4 +77,7 @@ public class PlayerResourcesScript : MonoBehaviour
                 break;
         }
     }
+
+
+
 }
