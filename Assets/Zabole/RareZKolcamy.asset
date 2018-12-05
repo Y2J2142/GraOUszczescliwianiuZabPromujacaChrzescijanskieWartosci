@@ -1,0 +1,30 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 753e53939fd20ac42b872e1cd1fca4cf, type: 3}
+  m_Name: RareZKolcamy
+  m_EditorClassIdentifier: 
+  sadSprite: {fileID: 21300002, guid: 068b5224a23a9d845b73ca8d8aa0229a, type: 3}
+  happySprite: {fileID: 21300000, guid: 068b5224a23a9d845b73ca8d8aa0229a, type: 3}
+  headgearSprite: {fileID: 0}
+  outfitSprite: {fileID: 0}
+  kamykAnimation: {fileID: 9100000, guid: 2380d4718ecb59c41a433f5c144e2b8b, type: 2}
+  maximumSadnessLevel: 150
+  rarity: 350
+  normalLootChance: 1
+  rareLootChance: 1
+  epicLootChance: 1
+  legendaryLootChance: 0
+  minCoinsLoot: 10
+  maxCoinsLoot: 20
+  type: 1
+  price: 10
+  isUnlocked: 0
+  frogName: "\u017Babol Z Kolacamy"

@@ -144,7 +144,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: -0.0002821595, y: 0.00012363483}
+  m_AnchoredPosition: {x: -0.0002821595, y: 0.5768648}
   m_SizeDelta: {x: 0.00024414, y: 3820.6}
   m_Pivot: {x: 0, y: 1}
 --- !u!114 &1945196
@@ -2188,7 +2188,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 356258326}
   m_Direction: 2
   m_Value: 0.99999976
-  m_Size: 0.63716674
+  m_Size: 0.6371666
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2459,8 +2459,8 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 804346279}
   m_HandleRect: {fileID: 804346278}
   m_Direction: 0
-  m_Value: 1
-  m_Size: 1
+  m_Value: 0
+  m_Size: 0.9999999
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -2646,7 +2646,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 974063866}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.99987394
+  m_Size: 0.6292607
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -4349,6 +4349,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 5928f19f197589140a6eb673848b545d, type: 2}
   - {fileID: 11400000, guid: 11ab2f91edf36dc428b12fa5d31306ea, type: 2}
   - {fileID: 11400000, guid: 22c3b52387360fe49ac3525b5a13551b, type: 2}
+  - {fileID: 11400000, guid: 3a6d48cd96a012344b4df1a81fa9ea9d, type: 2}
   normalGemSprite: {fileID: 21300000, guid: 35f67b4eebb04da48802ed27213bb064, type: 3}
   rareGemSprite: {fileID: 21300000, guid: 2b8c4a80ec9e6124891266a9d3ab1681, type: 3}
   epicGemSprite: {fileID: 21300000, guid: d3816c5b4c6c57043987ba482c7dea0d, type: 3}
