@@ -22,7 +22,7 @@ public class FrogData : ScriptableObject
     public int minCoinsLoot = 1;
     public int maxCoinsLoot = 1;
     public FrogType type = FrogType.Normal;
-    public int price = 10;
+    public int price = 20;
     public bool isUnlocked = false;
     public string frogName;
 }

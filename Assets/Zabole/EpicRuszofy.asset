@@ -25,6 +25,6 @@ MonoBehaviour:
   minCoinsLoot: 1
   maxCoinsLoot: 200
   type: 2
-  price: 10
+  price: 20
   isUnlocked: 0
   frogName: "Jednoro\u017Cec W\u015Br\xF3d \u017Baboli"

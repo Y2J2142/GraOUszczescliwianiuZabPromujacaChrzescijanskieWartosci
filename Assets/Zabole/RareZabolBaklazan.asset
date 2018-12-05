@@ -25,6 +25,6 @@ MonoBehaviour:
   minCoinsLoot: 0
   maxCoinsLoot: 0
   type: 1
-  price: 10
+  price: 20
   isUnlocked: 0
   frogName: "P\xF3\u0142 \u017Babol P\xF3\u0142 Bak\u0142a\u017Can"
