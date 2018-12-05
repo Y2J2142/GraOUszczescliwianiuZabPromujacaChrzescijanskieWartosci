@@ -24,10 +24,10 @@ public class ShopScript : MonoBehaviour
 
         this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();        
 
-        InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.GOWNO), "Gowno");
-        InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.ZWYKLE), "Zwykle");
+        InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.GOWNO), "No generalnie to nie polecam");
+        InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.ZWYKLE), "Zwykłe");
         InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.DOBRE), "Dobre");
-        InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.ZAJEBISTE), "Zajebiste");
+        InstantiateList(itemDatas.FindAll(item => item.rarity == ItemData.rarities.ZAJEBISTE), "No generalnie to polecam");
 	}
 
     private void InstantiateList(List<ItemData> items, string title)

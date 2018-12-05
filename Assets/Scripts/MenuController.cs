@@ -42,7 +42,7 @@ public class MenuController : MonoBehaviour
         if (trzepacz.rewarder != null && timer <= 0)
         {
             trzepacz.ShowAd();
-            timer = 600.0f;
+            timer = 60.0f;
         }
     }
     public void OnBackClick()

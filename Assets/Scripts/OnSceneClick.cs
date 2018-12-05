@@ -184,7 +184,8 @@ public class OnSceneClick : MonoBehaviour
             this.playerResourcesScript.CurrentCoinsNumber = PlayerPrefs.GetInt("hajs");
         else
             this.playerResourcesScript.CurrentCoinsNumber = 0;
-        this.playerResourcesScript.DecrementCurrentCoinNumber(0);
+            if(PlayerResourcesScript.OnCurrentCoinsNumberChange != null)
+                this.playerResourcesScript.DecrementCurrentCoinNumber(0);
     }
 
 
