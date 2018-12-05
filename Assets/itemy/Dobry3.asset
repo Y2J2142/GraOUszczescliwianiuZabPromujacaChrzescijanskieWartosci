@@ -14,6 +14,7 @@ MonoBehaviour:
   price: 500000
   modifier: 2
   itemName: Dobry3
-  sprite: {fileID: 21300000, guid: 5b8348b5eaaceba4fb9355d1491537a9, type: 3}
+  spriteUnlocked: {fileID: 21300000, guid: 5b8348b5eaaceba4fb9355d1491537a9, type: 3}
+  spriteLocked: {fileID: 21300000, guid: fbd00d0ee4fe63b4ea88535f9b4c7b1d, type: 3}
   rarity: 2
   isBought: 0

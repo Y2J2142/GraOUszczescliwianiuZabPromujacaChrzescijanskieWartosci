@@ -11,9 +11,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d29365e6459cbc4585f6b4953295355, type: 3}
   m_Name: GownoMiecz
   m_EditorClassIdentifier: 
-  price: 100
+  price: 500
   modifier: 2
   itemName: Miecz z Gowna
-  sprite: {fileID: 21300000, guid: 48696f3a97563c54aa180000644be6b6, type: 3}
+  spriteUnlocked: {fileID: 21300000, guid: 48696f3a97563c54aa180000644be6b6, type: 3}
+  spriteLocked: {fileID: 21300000, guid: 4d479d3dfc1732a488f445fb1bea14d6, type: 3}
   rarity: 0
-  isBought: 1
+  isBought: 0

@@ -30,7 +30,7 @@ public class ItemListScript : MonoBehaviour {
 			button.transform.localScale = new Vector3(1.0f,1.0f,1.0f);
 			Button btn = button.GetComponent<Button>();
 			btn.onClick.AddListener(() => OnItemClick(item, buttonImage));
-			buttonImage.sprite = item.sprite;
+			buttonImage.sprite = item.isBought ? item.spriteUnlocked : item.spriteLocked;
 
 		});
 	}
@@ -46,6 +46,8 @@ public class ItemListScript : MonoBehaviour {
 	{
 		if(onItemClick != null)
 			onItemClick(data);
+		if(data.isBought)
+			buttonImage.sprite = data.spriteUnlocked;
 	}
 
 

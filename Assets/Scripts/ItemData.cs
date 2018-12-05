@@ -10,7 +10,8 @@ public class ItemData : ScriptableObject
 	public int price = 100;
 	public float modifier = 2;
 	public string itemName;
-	public Sprite sprite;
+	public Sprite spriteUnlocked;
+	public Sprite spriteLocked;
 	public rarities rarity = rarities.GOWNO;
 	public bool isBought = false;
 }

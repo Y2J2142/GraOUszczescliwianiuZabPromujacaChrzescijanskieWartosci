@@ -50,6 +50,7 @@ public class ShopScript : MonoBehaviour
                 prs.DecrementCurrentCoinNumber(item.price);
                 trzepacz.rewarder(true);
                 item.isBought = true;
+                
             }
 
         }
