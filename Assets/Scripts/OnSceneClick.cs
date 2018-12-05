@@ -196,8 +196,10 @@ public class OnSceneClick : MonoBehaviour
     }
 
 
-    void OnApplicationQuit()
+    void OnApplicationPause(bool pauseStatus)
     {
+        if (!pauseStatus)
+            return;
         PlayerPrefs.DeleteAll();
         GameObject.Find("Shop").GetComponent<ShopScript>().itemDatas.ForEach(x => {
             PlayerPrefs.SetInt(x.itemName, x.isBought ? 1 : 0);
@@ -211,6 +213,8 @@ public class OnSceneClick : MonoBehaviour
 
         PlayerPrefs.SetInt("hajs", this.playerResourcesScript.CurrentCoinsNumber);
         PlayerPrefs.SetFloat("multi", this.rzabkaGiver.currentSadnessMultiplier);
+
+        PlayerPrefs.Save();
 
     }
 
