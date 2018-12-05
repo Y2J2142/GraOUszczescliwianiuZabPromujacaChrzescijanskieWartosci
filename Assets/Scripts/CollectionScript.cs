@@ -10,7 +10,7 @@ public class CollectionScript : MonoBehaviour
     [SerializeField]
     private Transform frogDetailsPanel;
     [SerializeField]
-    private List<FrogData> frogTypes;
+    public List<FrogData> frogTypes;
     private GameObject content;
     private GameObject frogListPrefab;
     [SerializeField]
@@ -39,12 +39,12 @@ public class CollectionScript : MonoBehaviour
         playerResources = GameObject.Find("PlayerResources").GetComponent<PlayerResourcesScript>();
     }
 
-    private void RefreshListsSprites()
+    public void RefreshListsSprites()
     {
         frogLists.ForEach(list => list.GetComponent<FrogListScript>().RefreshButtonSprites());
     }
 
-    private void InstantiateFrogList(List<FrogData> frogs, string title)
+    public void InstantiateFrogList(List<FrogData> frogs, string title)
     {
         var frogList = Instantiate(frogListPrefab, Vector3.zero, Quaternion.identity);
         frogList.transform.SetParent(content.GetComponent<GridLayoutGroup>().transform);

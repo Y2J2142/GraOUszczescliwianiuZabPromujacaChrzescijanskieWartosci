@@ -46,6 +46,8 @@ public class OnSceneClick : MonoBehaviour
             modifiers.Add(new FlowerModifier(2, 60, p));
         };
         this.playerResourcesScript = GameObject.Find("PlayerResources").GetComponent<PlayerResourcesScript>();
+        LoadData();
+
 
         GameObject.Find("Shop").GetComponent<ShopScript>().itemDatas.FindAll(x => x.isBought).ForEach(x => {
             modifiers.Add(new FlowerModifier(2, 60, true));
@@ -157,4 +159,50 @@ public class OnSceneClick : MonoBehaviour
         this.currentFrog = frog;
         this.frogScript = this.currentFrog.GetComponent<Frog>();
     }
+
+
+    void LoadData()
+    {
+        GameObject.Find("Shop").GetComponent<ShopScript>().itemDatas.ForEach(x => {
+            if(PlayerPrefs.HasKey(x.itemName))
+                x.isBought = PlayerPrefs.GetInt(x.itemName) == 1 ? true : false;
+            else
+                x.isBought = false;
+        });
+
+        GameObject.Find("Collection").GetComponent<CollectionScript>().frogTypes.ForEach(x => {
+            if(PlayerPrefs.HasKey(x.frogName))
+                x.isUnlocked = PlayerPrefs.GetInt(x.frogName) == 1 ? true : false;
+            else
+                x.isUnlocked = false;
+            if(x.frogName == "Najzwyklejszy Żabol Na Świecie")
+                x.isUnlocked = true;
+        });
+
+
+        if(PlayerPrefs.HasKey("hajs"))
+            this.playerResourcesScript.CurrentCoinsNumber = PlayerPrefs.GetInt("hajs");
+        else
+            this.playerResourcesScript.CurrentCoinsNumber = 0;
+        this.playerResourcesScript.DecrementCurrentCoinNumber(0);
+    }
+
+
+    void OnApplicationQuit()
+    {
+        PlayerPrefs.DeleteAll();
+        GameObject.Find("Shop").GetComponent<ShopScript>().itemDatas.ForEach(x => {
+            PlayerPrefs.SetInt(x.itemName, x.isBought ? 1 : 0);
+        });
+
+        GameObject.Find("Collection").GetComponent<CollectionScript>().frogTypes.ForEach(x => {
+            PlayerPrefs.SetInt(x.frogName, x.isUnlocked ? 1 : 0);
+        });
+
+        GameObject.Find("Collection").GetComponent<CollectionScript>().RefreshListsSprites();
+
+        PlayerPrefs.SetInt("hajs", this.playerResourcesScript.CurrentCoinsNumber);
+
+    }
+
 }
