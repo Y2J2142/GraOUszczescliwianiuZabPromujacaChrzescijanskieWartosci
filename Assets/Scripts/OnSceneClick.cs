@@ -193,6 +193,8 @@ public class OnSceneClick : MonoBehaviour
         else
             this.rzabkaGiver.CurrentSadnessMultiplier = 1.0f;
 
+        GameObject.Find("Collection").GetComponent<CollectionScript>().RefreshListsSprites();
+
     }
 
 
@@ -208,8 +210,6 @@ public class OnSceneClick : MonoBehaviour
         GameObject.Find("Collection").GetComponent<CollectionScript>().frogTypes.ForEach(x => {
             PlayerPrefs.SetInt(x.frogName, x.isUnlocked ? 1 : 0);
         });
-
-        GameObject.Find("Collection").GetComponent<CollectionScript>().RefreshListsSprites();
 
         PlayerPrefs.SetInt("hajs", this.playerResourcesScript.CurrentCoinsNumber);
         PlayerPrefs.SetFloat("multi", this.rzabkaGiver.CurrentSadnessMultiplier);

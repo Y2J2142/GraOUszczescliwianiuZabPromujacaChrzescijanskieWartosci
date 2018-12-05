@@ -49,6 +49,10 @@ public class Frog : MonoBehaviour
         animator = gameObject.transform.Find("Body").GetComponent<Animator>();
         SetFrogSprites();
         initFlyDestination();
+        if (CurrentSadnessmultiplier < 1)
+        {
+            CurrentSadnessmultiplier = 1.0;
+        }
         currentSadnessLevel = Convert.ToInt32(frogData.maximumSadnessLevel * CurrentSadnessmultiplier);
         fullSadness = currentSadnessLevel;
     }
