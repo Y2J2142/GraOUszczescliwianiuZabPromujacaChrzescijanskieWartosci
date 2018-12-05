@@ -40,11 +40,16 @@ public class OnSceneClick : MonoBehaviour
         this.dymek.gameObject.SetActive(false);
         this.goToCollectionButton = GameObject.Find("GoToCollectionButton");
         this.trzepacz = GameObject.Find("TrzepaczHajsu").GetComponent<TrzepaczHajsu>();
+
         this.trzepacz.rewarder = delegate (bool p)
         {
             modifiers.Add(new FlowerModifier(2, 60, p));
         };
         this.playerResourcesScript = GameObject.Find("PlayerResources").GetComponent<PlayerResourcesScript>();
+
+        GameObject.Find("Shop").GetComponent<ShopScript>().itemDatas.FindAll(x => x.isBought).ForEach(x => {
+            modifiers.Add(new FlowerModifier(2, 60, true));
+        });
     }
 
     void OnGUI()

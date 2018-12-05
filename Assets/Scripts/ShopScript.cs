@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ShopScript : MonoBehaviour
 {
     [SerializeField]
-    private List<ItemData> itemDatas;
+    public List<ItemData> itemDatas;
     private GameObject content;
     private GameObject itemListPrefab;
     private TrzepaczHajsu trzepacz;
