@@ -6,7 +6,9 @@ using UnityEngine.UI;
 public class RzabaSpawner : MonoBehaviour
 {
     public GameObject frogPrefab;
-    double currentSadnessMultiplier = 1.0;
+    public float currentSadnessMultiplier = 1.0f;
+
+    public float CurrentSadnessMultiplier { get ; set ; }
 
     void Start()
     {
@@ -21,8 +23,8 @@ public class RzabaSpawner : MonoBehaviour
         var rzabulec = Instantiate(frogPrefab, pos, Quaternion.identity);
         rzabulec.transform.SetParent(GameObject.Find("Game").transform);
         rzabulec.GetComponent<Frog>().frogData = GetRandomFrogType();
-        rzabulec.GetComponent<Frog>().CurrentSadnessmultiplier = currentSadnessMultiplier;
-        currentSadnessMultiplier += 0.01;
+        rzabulec.GetComponent<Frog>().CurrentSadnessmultiplier = CurrentSadnessMultiplier;
+        CurrentSadnessMultiplier += 0.01f;
         var parentPosition = rzabulec.transform.parent.transform.position;
         rzabulec.transform.position = new Vector3(parentPosition.x, parentPosition.y - 50, parentPosition.z);
         return rzabulec;
