@@ -26,5 +26,5 @@ MonoBehaviour:
   maxCoinsLoot: 6
   type: 0
   price: 20
-  isUnlocked: 1
+  isUnlocked: 0
   frogName: "Zabia Mi\u0119tka"
