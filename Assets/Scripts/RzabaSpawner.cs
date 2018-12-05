@@ -6,7 +6,6 @@ using UnityEngine.UI;
 public class RzabaSpawner : MonoBehaviour
 {
     public GameObject frogPrefab;
-    public float currentSadnessMultiplier = 1.0f;
 
     public float CurrentSadnessMultiplier { get ; set ; }
 

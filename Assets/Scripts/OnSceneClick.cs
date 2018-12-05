@@ -189,9 +189,9 @@ public class OnSceneClick : MonoBehaviour
 
 
         if(PlayerPrefs.HasKey("multi"))
-            this.rzabkaGiver.currentSadnessMultiplier = PlayerPrefs.GetFloat("multi");
+            this.rzabkaGiver.CurrentSadnessMultiplier = PlayerPrefs.GetFloat("multi");
         else
-            this.rzabkaGiver.currentSadnessMultiplier = 1.0f;
+            this.rzabkaGiver.CurrentSadnessMultiplier = 1.0f;
 
     }
 
@@ -212,7 +212,7 @@ public class OnSceneClick : MonoBehaviour
         GameObject.Find("Collection").GetComponent<CollectionScript>().RefreshListsSprites();
 
         PlayerPrefs.SetInt("hajs", this.playerResourcesScript.CurrentCoinsNumber);
-        PlayerPrefs.SetFloat("multi", this.rzabkaGiver.currentSadnessMultiplier);
+        PlayerPrefs.SetFloat("multi", this.rzabkaGiver.CurrentSadnessMultiplier);
 
         PlayerPrefs.Save();
 
